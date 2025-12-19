@@ -1,0 +1,198 @@
+:root {
+    --truck-navy: #000b1e;
+    --truck-gold: #c5a059; 
+}
+
+body {
+    font-family: 'Noto Sans Georgian', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+}
+
+h1, h2, h5, .brand-font { 
+    font-family: 'Playfair Display', 'Noto Sans Georgian', serif; 
+}
+
+/* --- ნავიგაცია (Navigation) --- */
+.navbar {
+    background: transparent; 
+    padding: 25px 0; 
+    transition: all 0.4s ease-in-out;
+    z-index: 1000;
+}
+
+.navbar.scrolled {
+    background: var(--truck-navy); 
+    padding: 15px 0; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.nav-link { 
+    color: white !important; 
+    font-weight: 500; 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    letter-spacing: 1px; 
+    position: relative;
+    padding: 5px 0 !important;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+/* Desktop Underline Effect */
+@media (min-width: 992px) {
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--truck-gold);
+        transition: width 0.3s ease-in-out;
+    }
+    .nav-link:hover::after {
+        width: 100%;
+    }
+}
+
+/* --- MOBILE MENU FIX (The transparency fix) --- */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: var(--truck-navy); 
+        margin: 15px -12px 0 -12px; 
+        padding: 25px;
+        border-bottom: 4px solid var(--truck-gold);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    }
+    .navbar-toggler-icon {
+        filter: invert(1); /* Makes the hamburger icon white */
+    }
+    .nav-link {
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding: 12px 0 !important;
+        margin: 0;
+    }
+}
+
+/* --- ღილაკის სტილი --- */
+.btn-gold { 
+    background-color: var(--truck-gold); 
+    color: white !important; 
+    border: none; 
+    border-radius: 0; 
+    padding: 12px 28px; 
+    font-weight: 600; 
+    transition: 0.3s; 
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.btn-gold:hover {
+    background-color: #a38445;
+    transform: translateY(-2px);
+}
+
+/* --- მთავარი სექცია (Hero) --- */
+.hero {
+    height: 110vh;
+    background: linear-gradient(rgba(0,11,30,0.6), rgba(0,11,30,0.6)), 
+                url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-top: -100px; 
+}
+
+/* --- კალკულატორის ვიჯეტი --- */
+.quote-widget { 
+    background: white; 
+    margin-top: -60px; 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1); 
+    padding: 30px; 
+    border-top: 4px solid var(--truck-gold); 
+    position: relative; 
+    z-index: 10; 
+}
+
+/* --- სექციების სტილი --- */
+.section-title { 
+    position: relative; 
+    padding-bottom: 15px; 
+    margin-bottom: 30px; 
+    font-weight: 700; 
+    font-size: 1.75rem;
+}
+
+.section-title::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 50px; 
+    height: 3px; 
+    background: var(--truck-gold); 
+}
+
+.feature-card p {
+    line-height: 1.8;
+    color: #666;
+}
+
+/* --- Footer Styles --- */
+footer {
+    background-color: var(--truck-navy);
+    color: rgba(255,255,255,0.7);
+    padding-top: 80px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+footer h5 {
+    color: white;
+    margin-bottom: 25px;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: 0.3s;
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.footer-link:hover {
+    color: var(--truck-gold);
+    padding-left: 5px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    background: rgba(255,255,255,0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: var(--truck-gold);
+    color: white;
+}
+
+.footer-bottom {
+    background-color: rgba(0,0,0,0.2);
+    padding: 25px 0;
+    margin-top: 60px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
