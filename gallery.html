@@ -1,33 +1,145 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <!-- droebit ari shavi background tvalebi dametxara tetrze -->
-    <body style="background-color: rgb(30, 27, 74)">
-        <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
-            <div class="container">
-                <a class="navbar-brand brand-font text-white fs-3" href="#">TRUCK <span style="color: var(--truck-gold)">SHIPPING</span></a>
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>გალერეა | TRUCK SHIPPING</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand brand-font text-white fs-3" href="index.html">TRUCK <span style="color: var(--truck-gold)">SHIPPING</span></a>
+        
+        <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">მთავარი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">მომსახურება</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">ბლოგი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">გალერეა</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">კონტაქტი</a></li>
+                    <li class="nav-item ms-lg-4">
+                        <a class="btn-gold" href="#">ტარიფის მოთხოვნა</a>
+                    </li>
+                </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="gallery-canvas-header journal-header-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="gallery-main-title brand-font">
+                    ჩვენი <br>
+                    <span class="gold-text">გალერეა</span>
+                </h1>
+                <p class="text-white-50 mt-4" style="margin-left: 60px; max-width: 450px;">
+                    ვიზუალური არქივი: პრემიუმ ტრანსპორტირება და გლობალური ლოჯისტიკური ოპერაციები.
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="gallery-grid">
                 
-                <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item"><a class="nav-link" href="index.html">მთავარი</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">ბლოგი</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">კონტაქტი</a></li>
-                        <li class="nav-item ms-lg-4 mt-3 mt-lg-0 w-100 w-lg-auto">
-                            <a class="btn-gold d-block d-lg-inline-block text-center" href="#">ტარიფის მოთხოვნა</a>
-                        </li>
-                    </ul>
+                <div class="gallery-item wide">
+                    <img src="image/JEEP.jpg" alt="Truck on road">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="image/ship.jpg" alt="Warehouse">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+                <div class="gallery-item tall">
+                    <img src="image/inventory.jpg" alt="Port at night">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="image/mic.jpg" alt="Logistics center">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+                <div class="gallery-item wide">
+                    <img src="image/photo-1494412519320-aa613dfb7738.jpg" alt="Aerial ship">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="image/cargo.jpg" alt="Cargo ship">
+                    <div class="gallery-overlay"><i class="bi bi-search"></i></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <a class="brand-font text-white fs-4 text-decoration-none" href="#">
+                        TRUCK <span style="color: var(--truck-gold)">SHIPPING</span>
+                    </a>
+                    <p class="mt-4 pe-lg-5">
+                        უზრუნველყოფთ უმაღლესი ხარისხის ლოჯისტიკურ გადაწყვეტილებებს. ჩვენი პრიორიტეტია თქვენი ტვირთის უსაფრთხოება.
+                    </p>    
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5>ნავიგაცია</h5>
+                    <a href="index.html" class="footer-link">მთავარი</a>
+                    <a href="service.html" class="footer-link">მომსახურეობა</a>
+                    <a href="blog.html" class="footer-link">ბლოგი</a>
+                    <a href="gallery.html" class="footer-link">გალერეა</a>
+                    <a href="contact.html" class="footer-link">კონტაქტი</a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>ლოჯისტიკა</h5> 
+                    <p>სახმელეთო გადაზიდვები</p>
+                    <p>საზღვაო გადაზიდვები</p>
+                    <p>საბაჟო მომსახურება</p>
+                    <p>ADR ტვირთები</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>კონტაქტი</h5>
+                    <p class="mb-2">
+                        <strong class="text-white">მისამართი:</strong> თბილისი, საქართველო
+                    </p>
+                    <p class="mb-2">
+                        <strong class="text-white">ტელეფონი:</strong> +995 XXX-XXX-XXX
+                    </p>
+                    <p class="mb-2">
+                        <strong class="text-white">ელ-ფოსტა:</strong> truckshipping@gmail.com
+                    </p>
                 </div>
             </div>
-        </nav>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    </body>
+        </div>
+
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 2025 TRUCK SHIPPING. ყველა უფლება დაცულია.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
