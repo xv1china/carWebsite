@@ -1,0 +1,54 @@
+  .topbar {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .topbar .btn-outline-dark {
+      border-color: white;
+      color: white;
+    }
+
+    .topbar .btn-outline-dark:hover {
+      background-color: white;
+      color: #0d6efd;
+    }
+    .carousel-img {
+      height: 70vh;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .carousel-caption h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .carousel-caption p {
+      font-size: 1.2rem;
+    }
+
+    .banner-icons {
+      background-color: white;
+      height: 100px;
+    }
+    .banner-icons img{
+        cursor: pointer;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #0d6efd;
+    }
+
+
+  @media (max-width: 768px) {
+
+      .carousel-control-prev,
+      .carousel-control-next {
+          display: none;
+      }
+  }

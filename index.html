@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Truck Website</title>
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container py-2 d-flex justify-content-between align-items-center">
+            <p class="mb-0 opacity-75">+995 689 09 09 09</p>
+
+            <div class="d-flex gap-3 align-items-center">
+
+                <!-- Language dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        <img src="images/Flag_of_Georgia.svg.png" width="30" height="20" alt=""> KA
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item d-flex align-items-center gap-1" href="#"><img
+                                    src="images/Flag_of_the_United_States.svg.webp" width="30" height="20" alt="">EN</a>
+                        </li>
+                        <li><a class="dropdown-item d-flex align-items-center gap-1" href="#"><img
+                                    src="images/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA</a></li>
+                    </ul>
+                </div>
+
+                <!-- Currency dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        ₾ GEL
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">₾ GEL</a></li>
+                        <li><a class="dropdown-item" href="#">$ USD</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <img src="images/logo.png" width="70" alt="Logo">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3">
+                    <li class="nav-item"><a class="nav-link active" href="#">მთავარი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ჩვენს შეახებ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ფოტო გალერეა</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">ბლოგი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">კონტაქტი</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0"
+                class="active"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="images/truck-1.jpg" class="d-block w-100 carousel-img" alt="Truck 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Heavy Duty Trucks</h2>
+                    <p>Reliable trucks for construction, transport and logistics.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/truck-1.jpg" class="d-block w-100 carousel-img" alt="Truck 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>European Quality</h2>
+                    <p>High-performance trucks imported from Europe.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="images/truck-1.jpg" class="d-block w-100 carousel-img" alt="Truck 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Best Price Guarantee</h2>
+                    <p>Competitive prices and flexible purchase options.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Banner Icons Section -->
+    <!-- <div class="banner-icons d-flex justify-content-center align-items-center gap-2">
+    <img class="border-end border-dark p-2" src="images/banner1Icons/custom_dd_backwagens.png" width="120" alt="">
+    <img class="border-end border-dark p-2" src="images/banner1Icons/custom_dd_mobilecrane.png" width="120" alt="">
+    <img src="images/banner1Icons/custom_dd_trailers.png" width="120" alt="">
+  </div> -->
+  <div class="container-fluid text-center my-4">
+    <h2>გადაზიდვები</h2>
+</div>
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-3">
+        
+        <div class="card" style="width: 28rem;">
+            <img src="images/cardTax/pics05.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card’s content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 28rem;">
+            <img src="images/cardTax/pics06.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card’s content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid d-flex justify-content-center align-items-center mt-3" style="gap: 100px; background-color: #0d6efd;">
+        <img src="images/logo.png">
+        <h2 style="color: white;">გთავაზობთ საუკეთესო მომსახურეობას</h2>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
