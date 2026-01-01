@@ -1,0 +1,404 @@
+body
+{
+    overflow-x: hidden;
+}
+/* =========================================
+   1. GLOBAL & RESETS
+   ========================================= */
+.card-list {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+}
+
+/* =========================================
+   2. TOPBAR & NAVBAR
+   ========================================= */
+.topbar {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.topbar .btn-outline-dark {
+    border-color: white;
+    color: white;
+}
+
+.topbar .btn-outline-dark:hover {
+    background-color: white;
+    color: #0d6efd;
+}
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #0d6efd;
+}
+
+/* Topbar Mobile */
+@media (max-width: 576px) {
+    .topbar .container {
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .topbar .btn-outline-dark {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+}
+
+/* =========================================
+   3. CAROUSEL (HERO SECTION)
+   ========================================= */
+/* Carousel Image */
+.carousel-img {
+    height: 75vh;
+    object-fit: cover;
+    filter: brightness(0.55);
+    transition: transform 6s ease;
+}
+
+/* Zoom effect on active slide */
+.carousel-item.active .carousel-img {
+    transform: scale(1.05);
+}
+
+/* Caption container */
+.carousel-caption {
+    bottom: 22%;
+    text-align: left;
+    max-width: 650px;
+}
+
+/* Title */
+.carousel-caption h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    margin-bottom: 15px;
+}
+
+/* Subtitle */
+.carousel-caption p {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+/* Controls */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 60px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.6));
+}
+
+/* Indicators */
+.carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators .active {
+    width: 25px;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
+    }
+
+    .carousel-img {
+        height: 45vh;
+    }
+
+    .carousel-caption {
+        bottom: 15%;
+        text-align: center;
+    }
+
+    .carousel-caption h2 {
+        font-size: 1.8rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+}
+
+
+/* =========================================
+   4. SHIPPING SWIPER (FIRST SLIDER)
+   ========================================= */
+.swiper-main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 60px;
+}
+
+.card-wrapper {
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+/* Truck Card */
+.truck-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.truck-badge {
+    background: #0d6efd;
+    color: #fff;
+    font-size: 0.75rem;
+    margin-top: 12px;
+}
+
+.truck-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #222;
+}
+
+/* Specs list */
+.truck-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.truck-specs li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.truck-specs i {
+    color: #0d6efd;
+}
+
+/* Footer */
+.truck-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.truck-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.card-item .card-link {
+    user-select: none;
+    display: block;
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
+    transition: 0.2s ease;
+}
+
+.card-item .card-link:hover {
+    border-color: #5372f0;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-link .badge {
+    color: #5372f0;
+    margin: 16px 0 18px;
+    padding: 8px 16px;
+    background: #dde4ff;
+    border-radius: 50px;
+    display: inline-block;
+}
+
+.card-link .card-button {
+    height: 35px;
+    width: 35px;
+    color: #5372f0;
+    border-radius: 50%;
+    border: 2px solid #5372f0;
+    background: none;
+    transition: 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-link:hover .card-button {
+    color: #fff;
+    background: #5372f0;
+    transform: rotate(-45deg);
+}
+/*5*/
+
+/* Modern Blog Card */
+.blog-card-modern {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.blog-card-modern:hover {
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* Image */
+.blog-card-modern .blog-img {
+    height: 100%;
+    min-height: 240px;
+    object-fit: cover;
+}
+
+/* Category tag */
+.blog-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #0d6efd;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Title */
+.blog-card-modern .card-title {
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+/* Meta */
+.blog-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.blog-meta i {
+    margin-right: 6px;
+    color: #0d6efd;
+}
+
+/* Buttons */
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+    .blog-card-modern .blog-img {
+        min-height: 200px;
+    }
+}
+
+
+/* =========================================
+   6. COMMON SWIPER ELEMENTS (PAGINATION & BUTTONS)
+   ========================================= */
+.swiper-button-prev,
+.swiper-button-next {
+    color: #5372f0;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.swiper-pagination {
+    position: relative;
+}
+
+.swiper-pagination-bullet-active {
+    width: 25px;
+    border-radius: 10px;
+    background: #5372f0;
+}
+
+/* =========================================
+   7. SERVICES & ABOUT US
+   ========================================= */
+.service-card {
+    transition: all 0.3s ease;
+    border-radius: 15px;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+.about-experience {
+    border-left: 5px solid white;
+}
+
+/* UTILS */
+.brightness-0 {
+    filter: brightness(0);
+}
+
+.invert {
+    filter: invert(1);
+}
