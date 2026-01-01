@@ -14,27 +14,7 @@ const shippingSwiper = new Swiper(".shipping-swiper", {
     },
     breakpoints: {
         0: { slidesPerView: 1 },
-        520: { slidesPerView: 2 },
+        520: { slidesPerView: 2 , navigation: false},
         950: { slidesPerView: 3 },
-    },
-});
-
-// Blog Swiper
-const blogSwiper = new Swiper(".blog-swiper", {
-    slidesPerView: 1,
-    spaceBetween: 25,
-    loop: true,
-    grabCursor: true,
-    pagination: {
-        el: ".blog-pagination", 
-        clickable: true,
-    },
-    navigation: {
-        nextEl: ".blog-next",
-        prevEl: ".blog-prev",
-    },
-    breakpoints: {
-        0: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
     },
 });
