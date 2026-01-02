@@ -1,62 +1,145 @@
 <!doctype html>
-<html lang="ka">
-
+<html lang="ka" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ჩვენს შესახებ | შ.პ.ს. კკკ & კომპანი</title>
-    <link rel="stylesheet" href="../style/style.css">
+    
+    <title>შ.პ.ს. "კკკ & კომპანია" — სატრანსპორტო და საექსპედიტორო მომსახურება | საქართველო</title>
+    <meta name="description" content="KKK & Company — საიმედო სატვირთო გადაზიდვები, საერთაშორისო ლოჯისტიკა და საბაჟო მომსახურება საქართველოში. 20+ ტრაილერის ფლოტი, 24/7 დისპეტჩერი, GPS თვალყურის დევნება.">
+    <link rel="canonical" href="https://kkk-co.ge/aboutus.html">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <link rel="alternate" hreflang="ka" href="https://kkk-co.ge/aboutus.html">
+    <link rel="alternate" hreflang="en" href="https://kkk-co.ge/en/aboutus.html">
+    <link rel="alternate" hreflang="x-default" href="https://kkk-co.ge/aboutus.html">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    
+    <link rel="stylesheet" href="../style/style.css">
     <style>
-        .about-hero {
-            background: linear-gradient(rgba(13, 110, 253, 0.8), rgba(0, 0, 0, 0.7)), url('images/truck-1.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 0;
+        /* Only animations, accessbility, and print styles remained. 
+           Layout media queries have been removed and replaced with Bootstrap classes in the HTML. */
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.985);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
-        .feature-icon {
-            font-size: 2rem;
-            color: #0d6efd;
-            margin-bottom: 1rem;
+        
+        .modal.show .modal-dialog {
+            animation: modalFadeIn 200ms ease-out;
         }
-        .info-card {
-            border: none;
-            border-radius: 15px;
-            transition: transform 0.3s;
+        
+        /* =========================================
+           ACCESSIBILITY
+           ========================================= */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-accent, #0d6efd); /* Fallback color added if var not defined */
+            color: white;
+            padding: 8px 16px;
+            z-index: 1000;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
         }
-        .info-card:hover {
-            transform: translateY(-5px);
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        *:focus-visible {
+            outline: 2px solid #0d6efd; /* Fallback */
+            outline-offset: 2px;
+        }
+        
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* =========================================
+           PRINT STYLES
+           ========================================= */
+        @media print {
+            .topbar, .navbar, footer, .hero__cta-secondary, #quote-form, .modal, .hero-buttons {
+                display: none !important;
+            }
+            
+            .hero__title-ka, .hero__title-en {
+                color: #000 !important;
+            }
+            
+            #hero {
+                background: none !important;
+                padding: 2rem 0 !important;
+                color: #000 !important;
+            }
+            
+            a[href]:after {
+                content: " (" attr(href) ")";
+            }
         }
     </style>
 </head>
 
-<body>
+<body class="bg-light">
+    <a href="#main" class="skip-link">გადასვლა მთავარ კონტენტზე / Skip to main content</a>
 
     <div class="topbar">
-        <div class="container py-2 d-flex justify-content-between align-items-center">
+        <div class="container py-2 d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
             <p class="mb-0 opacity-75">+995 689 09 09 09</p>
             <div class="d-flex gap-3 align-items-center">
                 <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown">
-                        <img src="images/Flag_of_Georgia.svg.png" width="30" height="20" alt=""> KA
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        <img src="../images/Flag_of_Georgia.svg.png" width="30" height="20" alt="საქართველოს დროშა"> KA
                     </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item d-flex align-items-center gap-1" href="#"><img
+                                    src="images/Flag_of_the_United_States.svg.webp" width="30" height="20" alt="აშშ დროშა">EN</a>
+                        </li>
+                        <li><a class="dropdown-item d-flex align-items-center gap-1" href="#"><img
+                                    src="images/Flag_of_Georgia.svg.png" width="30" height="20" alt="საქართველოს დროშა">KA</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        ₾ GEL
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">₾ GEL</a></li>
+                        <li><a class="dropdown-item" href="#">$ USD</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <img src="images/logo.png" width="70" alt="Logo">
+            <img src="../images/logo.png" width="70" alt="KKK & Company Logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3">
                     <li class="nav-item"><a class="nav-link" href="../index.html">მთავარი</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="aboutus.html">ჩვენს შესახებ</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="pages/aboutus.html">ჩვენს შესახებ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">ფოტო გალერეა</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">ბლოგი</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">კონტაქტი</a></li>
@@ -65,127 +148,344 @@
         </div>
     </nav>
 
-    <header class="about-hero text-white text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold mb-3">შ.პ.ს. “კკკ & კომპანი”</h1>
-            <p class="lead fs-4">თქვენი საუკეთესო არჩევანი და საიმედო პარტნიორი!</p>
-        </div>
-    </header>
+    <main id="main">
+        <header id="hero" class="py-5 py-lg-5" role="banner" aria-labelledby="hero-title">
+            <div class="container hero__container">
+                <h1 id="hero-title" class="hero__title-ka fw-bold display-5 display-md-4 mb-3">
+                    შ.პ.ს. "კკკ & კომპანია" - თქვენი საიმედო პარტნიორი ლოჯისტიკასა და გადაზიდვებში
+                </h1>
+                <h2 class="hero__title-en h4 h2-md mb-3 text-muted">
+                    KKK & Company - Your Reliable Partner in Logistics and Shipping
+                </h2>
+                <p class="hero__subtitle lead mb-4">
+                    20+ წლის გამოცდილება საერთაშორისო გადაზიდვებში. საკუთარი 20+ ტრაილერის ფლოტი, სრული საბაჟო მომსახურება, 24/7 თვალყურის დევნება და GPS მონიტორინგი.
+                </p>
+                <div class="d-flex flex-column flex-sm-row gap-3 mt-4 hero-buttons">
+                    <button class="btn btn-primary btn-lg hero__cta-primary" onclick="window.location.href='#quote-form'">
+                        გთხოვთ მოითხოვოთ შეთავაზება
+                    </button>
+                    <button class="btn btn-outline-dark btn-lg hero__cta-secondary" onclick="window.location.href='#contact'">
+                        დაგვირეკეთ +995 689 09 09 09
+                    </button>
+                </div>
+            </div>
+        </header>
 
-    <section class="py-5">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <h6 class="text-primary fw-bold text-uppercase">კომპანიის შესახებ</h6>
-                    <h2 class="fw-bold mb-4">საერთაშორისო სატრანსპორტო-საექსპედიტორო მომსახურება</h2>
-                    <p class="text-muted">ჩვენ ვუზრუნველყოფთ ნებისმიერი სახისა და მოცულობის ტვირთის გადაზიდვას როგორც საქართველოს ტერიტორიაზე, ასევე მთელი მსოფლიოს მასშტაბით.</p>
-                    <p>ჩვენი საქმიანობა მოიცავს საავტომობილო, საზღვაო და სარკინიგზო ტრანსპორტირებას. მსოფლიოს სხვადასხვა ქვეყნებსა და ქალაქებში არსებული პარტნიორული ქსელი საშუალებას გვაძლევს, კლიენტებს შევთავაზოთ გლობალური მომსახურება.</p>
-                    <div class="bg-light p-4 rounded-3 border-start border-primary border-4">
-                        <p class="mb-0 font-italic">"კომპანიის წარმატება დამყარებულია თანამშრომლების მაღალკვალიფიციურობაზე, ენერგიულობასა და ინიციატივაზე."</p>
+        <section id="about-canonical" class="py-5 bg-white" role="region" aria-labelledby="canonical-title">
+            <div class="container">
+                <h2 id="canonical-title" class="visually-hidden">ოფიციალური კომპანიის აღწერა</h2>
+                <div class="canonical-block">
+                    <blockquote class="mb-0">
+                        <p>შ.პ.ს. "კკკ & კომპანი" – სატრანსპორტო-საექსპედიტორო კომპანიაა.</p>
+                        <p>ჩვენ როგორც საქართველოს ტერიტორიაზე, ასევე მთელი მსოფლიოს მასშტაბით, ვუზრუნველყოფთ ნებისმიერი სახისა და მოცულობის ტვირთის გადაზიდვას საავტომობილო, საზღვაო და ასევე სარკინიგზო ტრანსპორტით.</p>
+                        <p>სხვადასხვა ქვეყნებსა და ქალაქებში წარმომადგენლობებსა და საქმიანი პარტნიორების არსებობით, კომპანია უზრუნველყოფს თავისი კლიენტების მომსახურებას მთელ მსოფლიოში.</p>
+                        <p>კომპანიის წარმატებული საქმიანობა დამყარებულია მისი თანამშრომლების მაღაკვალიფიციურობაზე, ენერგიულობისა და ინიციატივაზე. ჩვენი საქმიანობის ოპერატიულობა და საიმედოობა უზრუნველყოფილია თანამედროვე ტექნიკითა და კავშირი‍ს საშუალებებით.</p>
+                        <p>კომპანიის პასუხისმგებლობა დაზღვეულია საერთაშორისო სტანდარტების შესაბამისა და პროფესიონალური მუშაობით უზრუნველყოფს მომსახურებას საერთაშორისო დონეზე.</p>
+                        <p>ჩვენ გთავაზობთ სატრანსპორტო-საექსპედიტორი მომსახურების სრულ პაკეტს:</p>
+                        <ul>
+                            <li>საზღვაო, სახმელეთო, საკონტეინერო და სარკინიგზო გადაზიდვები;</li>
+                            <li>ტვირთების დასაწყობება საქართველოში და მის ფარგლებს გარეთ საჭირო დროს და ადგილზე;</li>
+                            <li>საბაჟო-საბროკერო მომსახურება;</li>
+                            <li>კომპანიას აქვს საკუთარი ავტოპარკი `დაკომპლექტებული 20 ერთეული ტრაილერით და ავტო ტექ.მომსახურების ცენტრით.</li>
+                        </ul>
+                        <p>შ.პ.ს. "კკკ & კომპანი" თქვენი საუკეთესო არჩევანი და საიმედო პარტნიორი იქნება!</p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission" class="py-5 bg-light" role="region" aria-labelledby="mission-title">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="position-relative">
+                            <img src="../images/truck-1.jpg" 
+                                 alt="KKK & Company ლოჯისტიკური ცენტრი და გუნდი"
+                                 class="img-fluid rounded shadow w-100">
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ps-lg-5">
+                        <h6 class="text-primary fw-bold text-uppercase">მისია და ხედვა</h6>
+                        <h2 id="mission-title" class="display-6 fw-bold mb-4">კავკასიის რეგიონის ლიდერი ლოჯისტიკაში</h2>
+                        <p class="lead text-muted">ჩვენი მისიაა გახდეთ კავკასიის რეგიონში სატრანსპორტო ლოჯისტიკის ლიდერი, რომელიც აერთიანებს ინოვაციას, საიმედოობას და კლიენტზე ორიენტირებულ მიდგომას.</p>
+                        <p>ჩვენ ვხედავთ საქართველოს, როგორც ევროპასა და აზიას შორის ლოჯისტიკურ კერას და ვქმნით ინფრასტრუქტურას, რომელიც ხელს შეუწყობს საერთაშორისო ვაჭრობის ზრდას. ჩვენი ღირებულებები: პროფესიონალიზმი, გამჭვირვალობა, საიმედოობა და ინოვაცია.</p>
+                        <div class="quick-facts mt-4">
+                            <h3 class="h5 mb-3">სწრაფი ფაქტები:</h3>
+                            <ul class="list-unstyled row">
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> 20+ ტრაილერის საკუთარი ფლოტი</li>
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> 24/7 დისპეტჩერის მომსახურება</li>
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> GPS რეალური დროის თვალყურის დევნება</li>
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> სრული საბაჟო ბროკერირება</li>
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> საშუალო ტრანზიტი: თბილისი-სტამბოლი 3-4 დღე</li>
+                                <li class="col-md-6 mb-2"><i class="fas fa-check-circle text-success me-2"></i> 45+ გამოცდილი თანამშრომელი</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="p-4 bg-white shadow-sm rounded text-center h-100 border-top border-primary border-3">
-                                <i class="fa-solid fa-shield-halved feature-icon"></i>
-                                <h5 class="fw-bold">დაზღვეული</h5>
-                                <p class="small text-muted mb-0">საერთაშორისო სტანდარტების შესაბამისი პასუხისმგებლობა.</p>
+            </div>
+        </section>
+
+        <section id="fleet-safety" class="py-5 bg-white" role="region" aria-labelledby="fleet-title">
+            <div class="container">
+                <h2 id="fleet-title" class="text-center mb-5">ჩვენი ფლოტი და უსაფრთხოების სტანდარტები</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm card-hover">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box bg-primary-subtle text-primary mb-3">
+                                    <i class="fa-solid fa-truck fa-2x"></i>
+                                </div>
+                                <h4 class="card-title">თანამედროვე ფლოტი</h4>
+                                <p class="card-text">20+ Volvo და Scania სატვირთო მანქანა Euro-6 სტანდარტით, ტემპერატურის კონტროლით და GPS თვალყურის დევნებით.</p>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="p-4 bg-white shadow-sm rounded text-center h-100 border-top border-primary border-3">
-                                <i class="fa-solid fa-microchip feature-icon"></i>
-                                <h5 class="fw-bold">თანამედროვე</h5>
-                                <p class="small text-muted mb-0">უახლესი ტექნიკა და კავშირის საშუალებები.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm card-hover">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box bg-primary-subtle text-primary mb-3">
+                                    <i class="fa-solid fa-shield-alt fa-2x"></i>
+                                </div>
+                                <h4 class="card-title">უსაფრთხოების სერტიფიკატები</h4>
+                                <p class="card-text">ISO 9001:2015, სატრანსპორტო უსაფრთხოების სერტიფიკატი და რეგულარული ტექნიკური შემოწმებები.</p>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="p-4 bg-primary text-white rounded shadow-sm">
-                                <h4 class="fw-bold mb-2"><i class="fa-solid fa-truck"></i> საკუთარი ავტოპარკი</h4>
-                                <p class="mb-0">კომპანია ფლობს 20 ერთეულ ტრაილერს და საკუთარ ავტო ტექ.მომსახურების ცენტრს.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm card-hover">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box bg-primary-subtle text-primary mb-3">
+                                    <i class="fa-solid fa-user-shield fa-2x"></i>
+                                </div>
+                                <h4 class="card-title">გამოცდილი მძღოლები</h4>
+                                <p class="card-text">ყველა მძღოლი გაივლის რეგულარულ სასწავლო კურსებს და აქვს 5+ წლის გამოცდილება საერთაშორისო მარშრუტებზე.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="py-5 bg-light">
-        <div class="container text-center mb-5">
-            <h2 class="fw-bold">რას გთავაზობთ ჩვენ?</h2>
-            <div class="mx-auto bg-primary" style="height: 3px; width: 60px;"></div>
-            <p class="mt-3 text-muted">სრული სატრანსპორტო-საექსპედიტორო მომსახურების პაკეტი</p>
-        </div>
+        <section id="certificates" class="py-5 bg-light" role="region" aria-labelledby="certificates-title">
+            <div class="container">
+                <h2 id="certificates-title" class="text-center mb-5">ჩვენი სერტიფიკატები და ლიცენზიები</h2>
+                <p class="text-center text-muted mb-5">ჩვენი პროფესიონალიზმის დამადასტურებელი დოკუმენტები</p>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="shadow-sm bg-white p-2 h-100 d-flex align-items-center justify-content-center">
+                            <img src="../images/certificate/1.jpg" class="img-fluid" style="max-height: 300px;" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="shadow-sm bg-white p-2 h-100 d-flex align-items-center justify-content-center">
+                            <img src="../images/certificate/2.jpg" class="img-fluid" style="max-height: 300px;" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="shadow-sm bg-white p-2 h-100 d-flex align-items-center justify-content-center">
+                            <img src="../images/certificate/3.jpg" class="img-fluid" style="max-height: 300px;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-5 bg-white" role="region" aria-labelledby="testimonials-title">
+            <div class="container">
+                <h2 id="testimonials-title" class="text-center mb-5">რას ამბობენ ჩვენი კლიენტები</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card testimonial-card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="testimonial-avatar  text-white">
+                                        გმ
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5 class="mb-0">გიორგი მელაძე</h5>
+                                        <p class="text-muted mb-0">ლოჯისტიკის დირექტორი, "პრომეტეი გრუპი"</p>
+                                    </div>
+                                </div>
+                                <blockquote class="mb-0">
+                                    <p class="fst-italic">"კკკ & კომპანიასთან თანამშრომლობა გამოირჩევა პროფესიონალიზმით და ტვირთების დროულად მიტანით. მათი საიმედოობა ჩვენი ლოჯისტიკური ჯაჭვის განუყოფელი ნაწილია."</p>
+                                </blockquote>
+                                <div class="rating mt-3">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card testimonial-card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="testimonial-avatar bg-primary text-white">
+                                        მბ
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5 class="mb-0">მარიამ ბერიძე</h5>
+                                        <p class="text-muted mb-0">დამფუძნებელი, "ვინის სახლი"</p>
+                                    </div>
+                                </div>
+                                <blockquote class="mb-0">
+                                    <p class="fst-italic">"მცირე ბიზნესისთვის საერთაშორისო გადაზიდვები ყოველთვის გამოწვევა იყო. კკკ-ის გუნდმა პროცესი გაგვიმარტივა და ყოველთვის დროულად მოგვყავთ ტვირთი. რეკომენდაციას ვაძლევ!"</p>
+                                </blockquote>
+                                <div class="rating mt-3">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="py-5 bg-light" role="region" aria-labelledby="faq-title">
+            <div class="container">
+                <h2 id="faq-title" class="text-center mb-5">ხშირად დასმული კითხვები</h2>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                                        რა ქვეყნებსა და რეგიონებს მოიცავს თქვენი მომსახურება?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <strong>საქართველოში:</strong> ყველა რეგიონი და ქალაქი.<br>
+                                        <strong>საერთაშორისოდ:</strong> თურქეთი, აზერბაიჯანი, სომხეთი, რუსეთი, უკრაინა, ევროპის კავშირის ქვეყნები (გერმანია, პოლონეთი, ნიდერლანდები, იტალია), ასევე ცენტრალური აზიის ქვეყნები.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                        როგორ შემიძლია ტვირთის თვალყურის დევნება?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        ყველა ტვირთს გააჩნია უნიკალური თვალყურის დევნების ნომერი. თქვენ შეგიძლიათ მისი მეშვეობით:
+                                        1) შეხვიდეთ ჩვენს ონლაინ პორტალზე და შეიყვანოთ ნომერი
+                                        2) გამოიყენოთ ჩვენი მობილური აპლიკაცია
+                                        3) დაგვირეკოთ დისპეტჩერს 24/7 ნომერზე: +995 689 09 09 09
+                                        GPS თვალყურის დევნება ხელმისაწვდომია რეალურ დროში.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                        როგორი საბაჟო პროცედურებია საჭირო საერთაშორისო გადაზიდვებისთვის?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        ჩვენ ვუზრუნველვყოფთ სრულ საბაჟო ბროკერირებას. საჭირო დოკუმენტები:
+                                        - კომერციული ინვოისი
+                                        - გადაზიდვის დოკუმენტები (CMR, Bill of Lading)
+                                        - წარმოშობის საბუთები
+                                        - დეკლარაციები
+                                        ჩვენი გუნდი დაგეხმარებათ ყველა საბაჟო ფორმალობების შესრულებაში და გადასახადების გაანგარიშებაში.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                        როგორ მივიღო ექსპრეს ან გადაუდებელი მომსახურება?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        ექსპრეს მომსახურებისთვის გთხოვთ დაგვირეკოთ პირდაპირ ჩვენს დისპეტჩერ ცენტრს +995 689 09 09 09. 
+                                        გადაუდებელი ტვირთებისთვის ჩვენ გვაქვს სპეციალური ექსპრეს ფლოტი, რომელიც მზადაა 2-4 საათში.
+                                        ექსპრეს მომსახურება ხელმისაწვდომია 24/7, მათ შორის შაბათ-კვირას და არდადეგებზე.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                                        რა ტიპის დაზღვევას გთავაზობთ ტვირთებისთვის?
+                                    </button>
+                                </h3>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        ჩვენ გთავაზობთ სამი დონის დაზღვევას:
+                                        1. <strong>საბაზისო დაზღვევა</strong> - ჩვეულებრივი რისკები (დაზიანება, ქურდობა)
+                                        2. <strong>გაფართოებული დაზღვევა</strong> - ბუნებრივი კატასტროფები, პოლიტიკური რისკები
+                                        3. <strong>სრული დაზღვევა</strong> - ყველა რისკი, მათ შორის დროზე ადრე გაცნობიერებული დეფექტები
+                                        დაზღვევის ღირებულება დამოკიდებულია ტვირთის ღირებულებაზე, მარშრუტზე და დაფარვის დონეზე.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+        
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-3">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 info-card p-4 shadow-sm">
-                        <h5 class="fw-bold text-primary"><i class="fa-solid fa-ship me-2"></i> გადაზიდვები</h5>
-                        <p class="small text-muted mt-2">საზღვაო, სახმელეთო, საკონტეინერო და სარკინიგზო გადაზიდვების სრული ციკლი.</p>
+                <div class="col-lg-4">
+                    <img src="images/logo.png" width="80" class="mb-3" alt="KKK & Company Logo">
+                    <p class="text-secondary">საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 info-card p-4 shadow-sm">
-                        <h5 class="fw-bold text-primary"><i class="fa-solid fa-warehouse me-2"></i> დასაწყობება</h5>
-                        <p class="small text-muted mt-2">ტვირთების შენახვა საქართველოში და მის ფარგლებს გარეთ საჭირო დროსა და ადგილზე.</p>
-                    </div>
+                <div class="col-lg-2 col-6">
+                    <h5 class="fw-bold mb-4">ლინკები</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none text-secondary">მთავარი</a></li>
+                        <li class="mb-2"><a href="aboutus.html" class="text-decoration-none text-secondary">ჩვენს შესახებ</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">გალერეა</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">ბლოგი</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 info-card p-4 shadow-sm">
-                        <h5 class="fw-bold text-primary"><i class="fa-solid fa-file-invoice me-2"></i> საბაჟო მომსახურება</h5>
-                        <p class="small text-muted mt-2">პროფესიონალური საბაჟო-საბროკერო მომსახურება თქვენი ბიზნესისთვის.</p>
-                    </div>
+                <div class="col-lg-3 col-6">
+                    <h5 class="fw-bold mb-4">სერვისები</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2">საერთაშორისო გადაზიდვა</li>
+                        <li class="mb-2">ავტო-იმპორტი</li>
+                        <li class="mb-2">საბაჟო მომსახურება</li>
+                        <li class="mb-2">კონსულტაცია</li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <img src="images/logo.png" width="80" class="mb-3" alt="Logo">
-                <p class="text-secondary">საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.</p>
-                <div class="d-flex gap-3 mt-4">
-                    <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-4">კონტაქტი</h5>
+                    <p class="text-secondary mb-2"><i class="fa-solid fa-phone me-2"></i> +995 689 09 09 09</p>
+                    <p class="text-secondary mb-2"><i class="fa-solid fa-envelope me-2"></i> info@kkk-co.ge</p>
+                    <p class="text-secondary mb-2"><i class="fa-solid fa-location-dot me-2"></i> თბილისი, ქინძმარაული #15</p>
                 </div>
             </div>
-            <div class="col-lg-2 col-6">
-                <h5 class="fw-bold mb-4">ლინკები</h5>
-                <ul class="list-unstyled text-secondary">
-                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">მთავარი</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">ჩვენს შესახებ</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">გალერეა</a></li>
-                    <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">ბლოგი</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-6">
-                <h5 class="fw-bold mb-4">სერვისები</h5>
-                <ul class="list-unstyled text-secondary">
-                    <li class="mb-2">საერთაშორისო გადაზიდვა</li>
-                    <li class="mb-2">ავტო-იმპორტი</li>
-                    <li class="mb-2">საბაჟო მომსახურება</li>
-                    <li class="mb-2">კონსულტაცია</li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h5 class="fw-bold mb-4">კონტაქტი</h5>
-                <p class="text-secondary mb-2"><i class="fa-solid fa-phone me-2"></i> +995 689 09 09 09</p>
-                <p class="text-secondary mb-2"><i class="fa-solid fa-envelope me-2"></i> info@kkk-co.ge</p>
-                <p class="text-secondary mb-2"><i class="fa-solid fa-location-dot me-2"></i> თბილისი, ქინძმარაული #15</p>
+            <hr class="mt-5 mb-4 border-secondary">
+            <div class="text-center text-secondary small">
+                <p>© 2025 KKK CO. ყველა უფლება დაცულია.</p>
             </div>
         </div>
-        <hr class="mt-5 mb-4 border-secondary">
-        <div class="text-center text-secondary small">
-            <p>© 2025 TRUCK WEBSITE. ყველა უფლება დაცულია.</p>
-        </div>
-    </div>
-</footer>
-
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
