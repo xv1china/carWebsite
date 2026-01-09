@@ -14,7 +14,8 @@ const shippingSwiper = new Swiper(".shipping-swiper", {
     },
     breakpoints: {
         0: { slidesPerView: 1 },
-        520: { slidesPerView: 2 , navigation: false},
+        520: { slidesPerView: 1 , navigation: false},
+        720:{slidesPerView: 2 , navigation: false},
         950: { slidesPerView: 3 },
     },
 });

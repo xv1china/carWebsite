@@ -1,10 +1,25 @@
-body
-{
+:root {
+
+    --red-main: #c72034;
+    --red-hover: #7a1214;
+
+    --blue-main: #284a9f;
+    --blue-hover: #25388b;
+
+    --green-main: #1db24b;
+    --green-hover: #00793e;
+
+
+    --dark-main: #111827;
+    --gray-main: #6b7280;
+    --light-bg: #f9fafb;
+    --border-light: #e5e7eb;
+}
+
+body {
     overflow-x: hidden;
 }
-/* =========================================
-   1. GLOBAL & RESETS
-   ========================================= */
+
 .card-list {
     padding: 0 !important;
     margin: 0 !important;
@@ -15,10 +30,13 @@ body
    2. TOPBAR & NAVBAR
    ========================================= */
 .topbar {
-    background-color: #0d6efd;
+    background-color: var(--blue-main);
     color: white;
 }
-
+.dropdown
+{
+    z-index: 10000000000;
+}
 .topbar .btn-outline-dark {
     border-color: white;
     color: white;
@@ -26,7 +44,7 @@ body
 
 .topbar .btn-outline-dark:hover {
     background-color: white;
-    color: #0d6efd;
+    color: var(--blue-main);
 }
 
 .navbar-nav .nav-link {
@@ -36,8 +54,16 @@ body
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-    color: #0d6efd;
+    color: var(--blue-main);
 }
+
+.navFix {
+    position: sticky;
+    top: 0;
+    z-index: 1050;
+    background-color: #fff;
+}
+
 
 /* Topbar Mobile */
 @media (max-width: 576px) {
@@ -80,7 +106,7 @@ body
     font-size: 3rem;
     font-weight: 800;
     line-height: 1.2;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     margin-bottom: 15px;
 }
 
@@ -88,7 +114,7 @@ body
 .carousel-caption p {
     font-size: 1.15rem;
     opacity: 0.95;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.6);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 }
 
 /* Controls */
@@ -99,7 +125,7 @@ body
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6));
 }
 
 /* Indicators */
@@ -167,7 +193,7 @@ body
 }
 
 .truck-badge {
-    background: #0d6efd;
+    background: var(--blue-main);
     color: #fff;
     font-size: 0.75rem;
     margin-top: 12px;
@@ -177,7 +203,7 @@ body
     font-size: 1.1rem;
     font-weight: 700;
     margin: 10px 0;
-    color: #222;
+    color: var(--dark-main);
 }
 
 /* Specs list */
@@ -199,7 +225,7 @@ body
 }
 
 .truck-specs i {
-    color: #0d6efd;
+    color: var(--blue-main);
 }
 
 /* Footer */
@@ -213,7 +239,7 @@ body
 .truck-price {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #0d6efd;
+    color: var(--green-main);
 }
 
 .card-item .card-link {
@@ -229,7 +255,7 @@ body
 }
 
 .card-item .card-link:hover {
-    border-color: #5372f0;
+    border-color: var(--blue-main);
 }
 
 .card-image {
@@ -240,7 +266,8 @@ body
 }
 
 .card-link .badge {
-    color: #5372f0;
+    color: var(--blue-main);
+    background: rgba(40, 74, 159, 0.12);
     margin: 16px 0 18px;
     padding: 8px 16px;
     background: #dde4ff;
@@ -249,11 +276,12 @@ body
 }
 
 .card-link .card-button {
+    color: var(--green-main);
+    border: 2px solid var(--green-main);
+    background: none;
     height: 35px;
     width: 35px;
-    color: #5372f0;
     border-radius: 50%;
-    border: 2px solid #5372f0;
     background: none;
     transition: 0.4s ease;
     display: flex;
@@ -262,10 +290,11 @@ body
 }
 
 .card-link:hover .card-button {
+    background: var(--green-main);
     color: #fff;
-    background: #5372f0;
     transform: rotate(-45deg);
 }
+
 /*5*/
 
 /* Modern Blog Card */
@@ -294,7 +323,7 @@ body
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #0d6efd;
+    background: var(--red-main);
     color: #fff;
     font-size: 0.7rem;
     padding: 5px 12px;
@@ -320,7 +349,7 @@ body
 
 .blog-meta i {
     margin-right: 6px;
-    color: #0d6efd;
+    color: var(--blue-main);
 }
 
 /* Buttons */
@@ -334,9 +363,9 @@ body
 }
 
 .icon-btn:hover {
-    background-color: #0d6efd;
+    background-color: var(--blue-main);
     color: #fff;
-    border-color: #0d6efd;
+    border-color: var(--blue-main);
 }
 
 /* Mobile fix */
@@ -352,7 +381,7 @@ body
    ========================================= */
 .swiper-button-prev,
 .swiper-button-next {
-    color: #5372f0;
+    color: var(--blue-main);
     width: 40px;
     height: 40px;
     background: #fff;
@@ -373,7 +402,7 @@ body
 .swiper-pagination-bullet-active {
     width: 25px;
     border-radius: 10px;
-    background: #5372f0;
+    background: var(--blue-main);
 }
 
 /* =========================================
@@ -386,7 +415,7 @@ body
 
 .service-card:hover {
     transform: translateY(-10px);
-    background-color: #0d6efd !important;
+    background-color: var(--green-main) !important;
     color: white !important;
 }
 
