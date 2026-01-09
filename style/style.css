@@ -132,7 +132,6 @@ body {
 .carousel-indicators button {
     width: 10px;
     height: 10px;
-    border-radius: 50%;
     opacity: 0.5;
     transition: all 0.3s ease;
 }
@@ -182,7 +181,6 @@ body {
 
 .card-wrapper {
     overflow: hidden;
-    margin-bottom: 40px;
 }
 
 /* Truck Card */
@@ -196,13 +194,11 @@ body {
     background: var(--blue-main);
     color: #fff;
     font-size: 0.75rem;
-    margin-top: 12px;
 }
 
 .truck-title {
     font-size: 1.1rem;
     font-weight: 700;
-    margin: 10px 0;
     color: var(--dark-main);
 }
 
@@ -210,7 +206,6 @@ body {
 .truck-specs {
     list-style: none;
     padding: 0;
-    margin: 0 0 15px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 6px 10px;
@@ -246,12 +241,14 @@ body {
     user-select: none;
     display: block;
     background: #fff;
-    padding: 18px;
+    padding: 15px;
     border-radius: 12px;
     text-decoration: none;
     border: 2px solid transparent;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
     transition: 0.2s ease;
+    display: flex;
+    gap: 10px;
 }
 
 .card-item .card-link:hover {
@@ -397,6 +394,7 @@ body {
 
 .swiper-pagination {
     position: relative;
+    transform: translateY(15px);
 }
 
 .swiper-pagination-bullet-active {
