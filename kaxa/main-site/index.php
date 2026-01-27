@@ -1,3 +1,20 @@
+<?php
+// index.php (main-site-ში)
+
+// სტაბილური include (არ აგერიოს path)
+require __DIR__ . "/../config/db.php";
+
+// მანქანები + თითო მანქანაზე 1 ფოტო (პირველი)
+$stmt = $pdo->query("
+  SELECT c.*,
+         (SELECT image FROM car_images WHERE car_id = c.id ORDER BY id ASC LIMIT 1) AS first_image
+  FROM cars c
+  ORDER BY c.created_at DESC
+  LIMIT 6
+");
+$cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!doctype html>
 <html lang="ka" dir="ltr">
 
@@ -66,11 +83,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">მთავარი</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/aboutus.html">ჩვენს შესახებ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/gallery.html">ფოტო გალერეა</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/blog.html">ბლოგი</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/contact.html">კონტაქტი</a></li>
+                    <!-- აქ როცა გადაარქმევ .php-ზე, ეს ლინკებიც შეცვალე -->
+                    <li class="nav-item"><a class="nav-link active" href="index.php">მთავარი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/aboutus.php">ჩვენს შესახებ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/gallery.php">ფოტო გალერეა</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/blog.php">ბლოგი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/contact.php">კონტაქტი</a></li>
                 </ul>
             </div>
         </div>
@@ -160,138 +178,47 @@
             <div class="card-wrapper swiper shipping-swiper">
                 <ul class="card-list swiper-wrapper">
 
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link truck-card">
+                    <?php foreach ($cars as $car): ?>
+                        <?php
+                        // თუ მანქანას აქვს ფოტო -> uploads-დან, თუ არა -> placeholder
+                        $img = !empty($car["first_image"])
+                            ? "../assets/uploads/cars/" . (int) $car["id"] . "/" . $car["first_image"]
+                            : "images/swiper1/1.jpg";
+                        ?>
+                        <li class="card-item swiper-slide">
+                            <a href="../list-site/index.php?car_id=<?= (int) $car['id'] ?>" class="card-link truck-card">
 
-                            <!-- Truck image -->
-                            <img src="images/swiper1/1.jpg" class="card-image" alt="Volvo FH16 Truck">
+                                <img src="<?= htmlspecialchars($img) ?>" class="card-image"
+                                    alt="<?= htmlspecialchars($car['title'] ?? ($car['brand'] . ' ' . $car['model'])) ?>">
 
-                            <!-- Status badge -->
-                            <span class="badge truck-badge">გასაყიდი</span>
-
-                            <!-- Title -->
-                            <h2 class="card-title truck-title">
-                                Volvo FH16 750 – 2022
-                            </h2>
-
-                            <!-- Specs -->
-                            <ul class="truck-specs">
-                                <li><i class="fa-solid fa-gauge-high"></i> 750 ცხენისძალა</li>
-                                <li><i class="fa-solid fa-road"></i> 120,000 კმ</li>
-                                <li><i class="fa-solid fa-gears"></i> ავტომატიკა</li>
-                                <li><i class="fa-solid fa-gas-pump"></i> დიზელი</li>
-                            </ul>
-
-                            <!-- Price + CTA -->
-                            <div class="truck-footer">
-                                <span class="truck-price">€85,000</span>
-                                <button class="card-button">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                        </a>
-                    </li>
+                                <?php $isSold = (($car["status"] ?? "available") === "sold"); ?>
+                                <span class="badge truck-badge">
+                                    <?= $isSold ? "გაყიდულია" : "გასაყიდი" ?>
+                                </span>
 
 
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link truck-card">
+                                <h2 class="card-title truck-title">
+                                    <?= htmlspecialchars(($car['brand'] ?? '') . ' ' . ($car['model'] ?? '') . ' – ' . ($car['year'] ?? '')) ?>
+                                </h2>
 
-                            <!-- Truck image -->
-                            <img src="images/swiper1/2.jpg" class="card-image" alt="Volvo FH16 Truck">
+                                <ul class="truck-specs">
+                                    <li><i class="fa-solid fa-road"></i> <?= (int) ($car['mileage'] ?? 0) ?> კმ</li>
+                                    <li><i class="fa-solid fa-gears"></i> <?= htmlspecialchars($car['gearbox'] ?? '-') ?>
+                                    </li>
+                                    <li><i class="fa-solid fa-gas-pump"></i> <?= htmlspecialchars($car['fuel'] ?? '-') ?>
+                                    </li>
+                                </ul>
 
-                            <!-- Status badge -->
-                            <span class="badge truck-badge">გასაყიდი</span>
+                                <div class="truck-footer">
+                                    <span class="truck-price"><?= number_format((int) ($car['price'] ?? 0)) ?> ₾</span>
+                                    <button class="card-button" type="button">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
 
-                            <!-- Title -->
-                            <h2 class="card-title truck-title">
-                                Volvo FH16 750 – 2022
-                            </h2>
-
-                            <!-- Specs -->
-                            <ul class="truck-specs">
-                                <li><i class="fa-solid fa-gauge-high"></i> 750 ცხენისძალა</li>
-                                <li><i class="fa-solid fa-road"></i> 120,000 კმ</li>
-                                <li><i class="fa-solid fa-gears"></i> ავტომატიკა</li>
-                                <li><i class="fa-solid fa-gas-pump"></i> დიზელი</li>
-                            </ul>
-
-                            <!-- Price + CTA -->
-                            <div class="truck-footer">
-                                <span class="truck-price">€85,000</span>
-                                <button class="card-button">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link truck-card">
-
-                            <!-- Truck image -->
-                            <img src="images/swiper1/1.jpg" class="card-image" alt="Volvo FH16 Truck">
-
-                            <!-- Status badge -->
-                            <span class="badge truck-badge">გასაყიდი</span>
-
-                            <!-- Title -->
-                            <h2 class="card-title truck-title">
-                                Volvo FH16 750 – 2022
-                            </h2>
-
-                            <!-- Specs -->
-                            <ul class="truck-specs">
-                                <li><i class="fa-solid fa-gauge-high"></i> 750 ცხენისძალა</li>
-                                <li><i class="fa-solid fa-road"></i> 120,000 კმ</li>
-                                <li><i class="fa-solid fa-gears"></i> ავტომატიკა</li>
-                                <li><i class="fa-solid fa-gas-pump"></i> დიზელი</li>
-                            </ul>
-
-                            <!-- Price + CTA -->
-                            <div class="truck-footer">
-                                <span class="truck-price">€85,000</span>
-                                <button class="card-button">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link truck-card">
-
-                            <!-- Truck image -->
-                            <img src="images/swiper1/1.jpg" class="card-image" alt="Volvo FH16 Truck">
-
-                            <!-- Status badge -->
-                            <span class="badge truck-badge">გასაყიდი</span>
-
-                            <!-- Title -->
-                            <h2 class="card-title truck-title">
-                                Volvo FH16 750 – 2022
-                            </h2>
-
-                            <!-- Specs -->
-                            <ul class="truck-specs">
-                                <li><i class="fa-solid fa-gauge-high"></i> 750 ცხენისძალა</li>
-                                <li><i class="fa-solid fa-road"></i> 120,000 კმ</li>
-                                <li><i class="fa-solid fa-gears"></i> ავტომატიკა</li>
-                                <li><i class="fa-solid fa-gas-pump"></i> დიზელი</li>
-                            </ul>
-
-                            <!-- Price + CTA -->
-                            <div class="truck-footer">
-                                <span class="truck-price">€85,000</span>
-                                <button class="card-button">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                        </a>
-                    </li>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
 
                 </ul>
             </div>
@@ -301,6 +228,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
+
     <div class="container-fluid d-flex justify-content-center align-items-center"
         style="gap: 100px; background-color: #0d6efd; padding: 20px;">
         <h2 style="color: white;">ბლოგი</h2>
@@ -434,7 +362,7 @@
             <div class="row g-4 justify-content-center">
 
                 <!-- 1 -->
-                <div class="col-lg-3 col-md-6"> 
+                <div class="col-lg-3 col-md-6">
                     <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
                         <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
                             style="width:70px;height:70px;">
