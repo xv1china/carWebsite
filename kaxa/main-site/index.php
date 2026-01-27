@@ -168,8 +168,8 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
-    <div class="container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
-        style="gap: 10px; background-color: #0d6efd; text-align: center;"> <img src="images/logo.png">
+    <div class="p-3 container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
+        style="gap: 10px; background-color: #0d6efd; text-align: center;">
         <h2 style="color: white;">გთავაზობთ საუკეთესო მომსახურეობას</h2>
     </div>
     <!-- New Swiper Section -->
