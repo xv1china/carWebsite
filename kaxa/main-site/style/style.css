@@ -871,3 +871,9 @@ html {
         transition: none;
     }
 }
+.seeMore{
+    background-color: white;
+    border: none;
+    color: var(--color-accent-700);
+    text-decoration: underline;
+}

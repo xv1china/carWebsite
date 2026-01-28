@@ -153,7 +153,7 @@ $blogs = $stmtB->fetchAll();
             <div class="carousel-item active">
                 <img src="images/index_slider_iamges/index_slider_1.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 1">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption">
                     <h2>მძიმე ტექნიკა</h2>
                     <p>საიმედო სატვირთო მანქანები მშენებლობის, ტრანსპორტისა და ლოჯისტიკისთვის.</p>
                 </div>
@@ -161,7 +161,7 @@ $blogs = $stmtB->fetchAll();
             <div class="carousel-item">
                 <img src="images/index_slider_iamges/index_slider_2.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 2">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption">
                     <h2>ევროპული ხარისხი</h2>
                     <p>ევროპიდან იმპორტირებული მაღალი წარმადობის სატვირთო მანქანები.</p>
                 </div>
@@ -169,7 +169,7 @@ $blogs = $stmtB->fetchAll();
             <div class="carousel-item">
                 <img src="images/index_slider_iamges/index_slider_3.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 3">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption">
                     <h2>საუკეთესო ფასის გარანტია</h2>
                     <p>კონკურენტული ფასები და მოქნილი შესყიდვის ვარიანტები.</p>
                 </div>
@@ -190,15 +190,16 @@ $blogs = $stmtB->fetchAll();
     </div>
 
     <!-- Old Cards Section -->
-    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 my-4">
+    <div class="container-fluid d-flex flex-wrap justify-content-center gap-3 my-4">
         <div class="card" style="width: 28rem;">
             <img src="images/cardTax/pics05.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">სახმელეთო</h5>
-                <p class="card-text">
+               <p class="card-text ">
                     ჩვენი კომპანიის ერთ-ერთი პრიორიტეტია საავტომობილო გადაზიდვები ევროპის, კავკასიის და დსთ-ს ნებისმიერი
-                    ქვეყნიდან. სახმელეთო (საავტომობილო-სარკინიგზო) ტრანსპორტით ჩვენ ვახორციელებთ ტვირთების
-                    ტრანსპორტირებას, როგორც საქართველოს ტერიტორიაზე </p>
+                    ქვეყნიდან.  <span class="d-none" id="see-more-span-1">სახმელეთო (საავტომობილო-სარკინიგზო) ტრანსპორტით ჩვენ ვახორციელებთ ტვირთების
+                    ტრანსპორტირებას, როგორც საქართველოს ტერიტორიაზე.</span>
+                        <button id="seeMore1" class="seeMore " onclick="seeMore1()">მეტი</button> </p>
                 <a href="pages/aboutus.html#shipping" class="btn btn-primary">წავალთ ყველგან</a>
             </div>
         </div>
@@ -207,16 +208,16 @@ $blogs = $stmtB->fetchAll();
             <img src="images/cardTax/pics06.jpg" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">საზღვაო</h5>
-                <p class="card-text">
+                <p class="card-text  ">
                     ტვირთების საზღვაო გადაზიდვებს ვახორციელებთ მთელი მსოფლიოს მაშტაბით სრულად და ნაწილობრივ დატვირთული
-                    კონტეინერებით, ნაყარი ფორმით, ასევე არაგაბარიტული ტვირთების გადაზიდვებს. საჭიროების შემთხვევაში
-                    დავფრახტავთ გემს. </p>
+                   <span class="d-none" id="see-more-span-2"> კონტეინერებით, ნაყარი ფორმით, ასევე არაგაბარიტული ტვირთების გადაზიდვებს. </span>
+                <button class="seeMore" id="seeMore2" onclick="seeMore2()">მეტი</button> </p>
                 <a href="pages/aboutus.html#shipping" class="btn btn-primary">წავალთ ყველგან</a>
             </div>
         </div>
     </div>
     <div class="container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
-        style="gap: 10px; background-color: #0d6efd; text-align: center;"> <img src="images/logo.png">
+        style="gap: 10px; background-color: #0d6efd; text-align: center;"> 
         <h2 style="color: white;">გთავაზობთ საუკეთესო მომსახურეობას</h2>
     </div>
     <!-- New Swiper Section -->
