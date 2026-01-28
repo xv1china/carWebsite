@@ -154,20 +154,23 @@
       const img = car.image || 'https://via.placeholder.com/600x400?text=No+Image';
       const badge = car.status === 'sold' ? 'გაყიდულია' : 'გასაყიდი';
       return `
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-sm h-100 p-2">
-          <img class="car-img" src="${img}" alt="">
-          <div class="p-2">
-            <div class="d-flex justify-content-between align-items-center">
-              <h5 class="mb-1">${car.brand} ${car.model} - ${car.year}</h5>
-              <span class="badge text-bg-primary">${badge}</span>
-            </div>
-            <div class="text-muted small mb-2">${car.fuel} • ${car.gearbox} • ${car.mileage} კმ</div>
-            <div class="fw-bold">${car.price.toLocaleString()} ₾</div>
+  <div class="col-12 col-md-6 col-lg-4">
+    <a href="pages/cars.php?id=${car.id}" class="text-decoration-none text-dark">
+      <div class="card shadow-sm h-100 p-2">
+        <img class="car-img" src="${img}" alt="">
+        <div class="p-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-1">${car.brand} ${car.model} - ${car.year}</h5>
+            <span class="badge text-bg-primary">${badge}</span>
           </div>
+          <div class="text-muted small mb-2">${car.fuel} • ${car.gearbox} • ${car.mileage} კმ</div>
+          <div class="fw-bold">${car.price.toLocaleString()} ₾</div>
         </div>
       </div>
-    `;
+    </a>
+  </div>
+`;
+
     }
 
     async function load() {

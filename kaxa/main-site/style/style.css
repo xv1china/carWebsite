@@ -381,7 +381,7 @@ body
    7. SERVICES & ABOUT US
    ========================================= */
 .service-card {
-    transition: all 0.3s ease !important;
+    transition: all 0.3s ease;
     border-radius: 15px;
 }
 
@@ -622,7 +622,7 @@ body
         }
         
         .card-hover {
-            transition: all 0.3s ease !important;
+            transition: all 0.3s ease;
         }
         
         .card-hover:hover {

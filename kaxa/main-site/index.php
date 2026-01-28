@@ -13,6 +13,9 @@ $stmt = $pdo->query("
   LIMIT 6
 ");
 $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmtB = $pdo->query("SELECT id, title, content, image, created_at FROM blog ORDER BY created_at DESC LIMIT 2");
+$blogs = $stmtB->fetchAll();
+
 ?>
 
 <!doctype html>
@@ -38,6 +41,50 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style/style.css">
+    <style>
+        <style>
+
+        /* BLOG cards equal sizes */
+        .blog-card-modern {
+            height: 100%;
+        }
+
+        .blog-card-modern .row {
+            height: 100%;
+        }
+
+        /* fix image size */
+        .blog-card-modern .blog-img {
+            width: 100%;
+            height: 220px;
+            /* შეგიძლია შეცვალო 200/240 */
+            object-fit: cover;
+        }
+
+        /* make body same height */
+        .blog-card-modern .card-body {
+            min-height: 220px;
+            /* ტექსტი რომ არ “გადმოიყაროს” */
+        }
+
+        /* clamp title */
+        .blog-card-modern .card-title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* მაქს 2 ხაზი */
+            overflow: hidden;
+        }
+
+        /* clamp excerpt */
+        .blog-card-modern .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            /* მაქს 3 ხაზი */
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -168,8 +215,8 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
-    <div class="p-3 container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
-        style="gap: 10px; background-color: #0d6efd; text-align: center;">
+    <div class="container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
+        style="gap: 10px; background-color: #0d6efd; text-align: center;"> <img src="images/logo.png">
         <h2 style="color: white;">გთავაზობთ საუკეთესო მომსახურეობას</h2>
     </div>
     <!-- New Swiper Section -->
@@ -237,92 +284,73 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container my-5">
         <div class="row g-4">
 
-            <!-- Card 1 -->
-            <div class="col-lg-6 col-12">
-                <div class="card blog-card blog-card-modern">
-                    <div class="row g-0 align-items-stretch">
+            <?php foreach ($blogs as $b): ?>
+                <?php
+                $img = !empty($b["image"])
+                    ? "../assets/uploads/blog/" . (int) $b["id"] . "/" . $b["image"]
+                    : "images/truck-1.jpg";
 
-                        <div class="col-md-5 position-relative">
-                            <img src="images/truck-1.jpg" class="img-fluid blog-img" alt="Truck Blog">
-                            <span class="blog-tag">ახალი ჩამოსვლა</span>
-                        </div>
+                $excerpt = mb_substr(trim(strip_tags($b["content"] ?? "")), 0, 100);
+                if (mb_strlen(trim(strip_tags($b["content"] ?? ""))) > 100)
+                    $excerpt .= "...";
+                ?>
 
-                        <div class="col-md-7 d-flex flex-column">
-                            <div class="card-body d-flex flex-column h-100">
-                                <h5 class="card-title">
-                                    Volvo FH16 სატვირთო მანქანა უკვე მარაგშია
-                                </h5>
+                <div class="col-lg-6 col-12">
+                    <div class="card blog-card blog-card-modern">
+                        <div class="row g-0 align-items-stretch">
 
-                                <p class="card-text text-muted">
-                                    პრემიუმ ევროპული სატვირთო მანქანები დაბალი გარბენით, სრული სერვისის ისტორიით და
-                                    გარანტიით. </p>
+                            <div class="col-md-5 position-relative">
+                                <img src="<?= htmlspecialchars($img) ?>" class="img-fluid blog-img" alt="Truck Blog">
+                                <span class="blog-tag">BLOG</span>
+                            </div>
 
-                                <div class="blog-meta mt-auto mb-3">
-                                    <span><i class="fa-regular fa-calendar"></i> ივლისი 02, 2026</span>
-                                    <span><i class="fa-regular fa-user"></i> ანა ხომეროვი</span>
-                                </div>
+                            <div class="col-md-7 d-flex flex-column">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <h5 class="card-title">
+                                        <?= htmlspecialchars($b["title"]) ?>
+                                    </h5>
 
-                                <div class="card-buttons d-flex gap-2">
-                                    <a href="pages/blog.html#post1" class="btn btn-primary btn-sm px-3">წაიკითხე
-                                        მეტი</a>
-                                    <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </button>
+                                    <p class="card-text text-muted">
+                                        <?= htmlspecialchars($excerpt) ?>
+                                    </p>
+
+                                    <div class="blog-meta mt-auto mb-3">
+                                        <span><i class="fa-regular fa-calendar"></i>
+                                            <?= htmlspecialchars($b["created_at"] ?? "") ?></span>
+                                    </div>
+
+                                    <div class="card-buttons d-flex gap-2">
+                                        <!-- აქ ლინკი შეცვალე: blog.html -> blog.php (დინამიკისთვის აუცილებელია) -->
+                                        <a href="pages/blog.php?id=<?= (int) $b["id"] ?>"
+                                            class="btn btn-primary btn-sm px-3">
+                                            წაიკითხე მეტი
+                                        </a>
+
+                                        <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
+                                            <i class="fa-solid fa-share-nodes"></i>
+                                        </button>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
 
-            <!-- Card 2 -->
-            <div class="col-lg-6 col-12">
-                <div class="card blog-card blog-card-modern">
-                    <div class="row g-0 align-items-stretch">
-
-                        <div class="col-md-5 position-relative">
-                            <img src="images/truck-1.jpg" class="img-fluid blog-img" alt="Truck Blog">
-                            <span class="blog-tag">LOGISTICS</span>
-                        </div>
-
-                        <div class="col-md-7 d-flex flex-column">
-                            <div class="card-body d-flex flex-column h-100">
-                                <h5 class="card-title">
-                                    როგორ ავირჩიოთ სწორი მძიმე სატვირთო მანქანა
-                                </h5>
-
-                                <p class="card-text text-muted">
-                                    პრემიუმ ევროპული სატვირთო მანქანები დაბალი გარბენით, სრული სერვისის ისტორიით და
-                                    გარანტიით. </p>
-
-                                <div class="blog-meta mt-auto mb-3">
-                                    <span><i class="fa-regular fa-calendar"></i> დეკემბერი 29, 2025</span>
-                                    <span><i class="fa-regular fa-user"></i> ხვიჩა ესპანელი</span>
-                                </div>
-
-                                <div class="card-buttons d-flex gap-2">
-                                    <a href="pages/blog.html#post2" class="btn btn-primary btn-sm px-3">წაიკითხე
-                                        მეტი</a>
-                                    <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <?php if (empty($blogs)): ?>
+                <div class="col-12">
+                    <div class="alert alert-warning">ბლოგი ჯერ არ დამატებულა.</div>
                 </div>
-            </div>
+            <?php endif; ?>
 
         </div>
     </div>
+
 
 
     <section class="py-5 bg-white">

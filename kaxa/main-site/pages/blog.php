@@ -1,3 +1,67 @@
+<?php
+require __DIR__ . "/../../config/db.php";
+
+function post_image_url(array $p): string {
+  if (!empty($p["image"])) {
+    return "../../assets/uploads/blog/" . (int)$p["id"] . "/" . $p["image"];
+  }
+  return "../images/truck-1.jpg";
+}
+
+function excerpt(string $text, int $len = 190): string {
+  $t = trim(strip_tags($text));
+  if (mb_strlen($t) <= $len) return $t;
+  return mb_substr($t, 0, $len) . "...";
+}
+
+$id = (int)($_GET["id"] ?? 0);
+
+// ===== Single post =====
+$post = null;
+if ($id > 0) {
+  $stmt = $pdo->prepare("SELECT id, title, content, image, created_at FROM blog WHERE id = ? LIMIT 1");
+  $stmt->execute([$id]);
+  $post = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$post) {
+    header("Location: blog.php");
+    exit;
+  }
+}
+
+// ===== List + search + pagination =====
+$q = "";
+$page = 1;
+$pages = 1;
+$posts = [];
+
+if ($id <= 0) {
+  $q = trim($_GET["q"] ?? "");
+  $page = max(1, (int)($_GET["page"] ?? 1));
+  $limit = 6;
+  $offset = ($page - 1) * $limit;
+
+  $where = "";
+  $params = [];
+
+  if ($q !== "") {
+    $where = "WHERE title LIKE ? OR content LIKE ?";
+    $like = "%".$q."%";
+    $params = [$like, $like];
+  }
+
+  $stmtCount = $pdo->prepare("SELECT COUNT(*) FROM blog $where");
+  $stmtCount->execute($params);
+  $total = (int)$stmtCount->fetchColumn();
+  $pages = max(1, (int)ceil($total / $limit));
+
+  if ($page > $pages) $page = $pages;
+  $offset = ($page - 1) * $limit;
+
+  $stmt = $pdo->prepare("SELECT id, title, content, image, created_at FROM blog $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset");
+  $stmt->execute($params);
+  $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
 <!doctype html>
 <html lang="ka" dir="ltr">
 <head>
@@ -8,6 +72,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="../style/style.css">
+    <style>
+       <style>
+        <style>
+
+        /* BLOG cards equal sizes */
+        .blog-card-modern {
+            height: 100%;
+        }
+
+        .blog-card-modern .row {
+            height: 100%;
+        }
+
+        /* fix image size */
+        .blog-card-modern .blog-img {
+            width: 100%;
+            height: 220px;
+            /* შეგიძლია შეცვალო 200/240 */
+            object-fit: cover;
+        }
+
+        /* make body same height */
+        .blog-card-modern .card-body {
+            min-height: 220px;
+            /* ტექსტი რომ არ “გადმოიყაროს” */
+        }
+
+        /* clamp title */
+        .blog-card-modern .card-title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* მაქს 2 ხაზი */
+            overflow: hidden;
+        }
+
+        /* clamp excerpt */
+        .blog-card-modern .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            /* მაქს 3 ხაზი */
+            overflow: hidden;
+        }
+    </style>
+    </style>
 </head>
 <body class="bg-light">
     <!-- Topbar -->
@@ -45,17 +155,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a href="../index.html"><img src="../images/logo.png" width="70" alt="Logo"></a>
+            <a href="../index.php"><img src="../images/logo.png" width="70" alt="Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-3">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">მთავარი</a></li>
-                    <li class="nav-item"><a class="nav-link" href="aboutus.html">ჩვენს შესახებ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">ფოტო გალერეა</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="blog.html">ბლოგი</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">კონტაქტი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.php">მთავარი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.php">ჩვენს შესახებ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.php">ფოტო გალერეა</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.php">ბლოგი</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php">კონტაქტი</a></li>
                 </ul>
             </div>
         </div>
@@ -66,167 +176,122 @@
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">ბლოგი</h1>
             <p class="lead">სიახლეები და სტატიები სატვირთო მანქანების, ლოჯისტიკისა და გადაზიდვების შესახებ</p>
+
+            <?php if ($id <= 0): ?>
+              <div class="row justify-content-center mt-4">
+                <div class="col-lg-6">
+                  <form method="get" class="d-flex gap-2">
+                    <input name="q" class="form-control" placeholder="ძებნა..." value="<?= htmlspecialchars($q) ?>">
+                    <button class="btn btn-light fw-bold">Search</button>
+                  </form>
+                </div>
+              </div>
+            <?php endif; ?>
         </div>
     </section>
 
     <!-- Blog Posts -->
     <section class="py-5">
         <div class="container">
-            <div class="row g-4">
-                <!-- Blog Post 1 -->
-                <div class="col-lg-6" id="post1">
-                    <div class="card blog-card blog-card-modern h-100">
-                        <div class="row g-0 align-items-stretch">
-                            <div class="col-md-5 position-relative">
-                                <img src="../images/truck-1.jpg" class="img-fluid blog-img" alt="Truck Blog">
-                                <span class="blog-tag">ახალი ჩამოსვლა</span>
-                            </div>
-                            <div class="col-md-7 d-flex flex-column">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h5 class="card-title">Volvo FH16 სატვირთო მანქანა უკვე მარაგშია</h5>
-                                    <p class="card-text text-muted">პრემიუმ ევროპული სატვირთო მანქანები დაბალი გარბენით, სრული სერვისის ისტორიით და გარანტიით. ჩვენი ახალი ჩამოსვლა - Volvo FH16 750 ცხენისძალა, 2022 წლის მოდელი.</p>
-                                    <div class="blog-meta mt-auto mb-3">
-                                        <span><i class="fa-regular fa-calendar"></i> ივლისი 02, 2026</span>
-                                        <span><i class="fa-regular fa-user"></i> ანა ხომეროვი</span>
-                                    </div>
-                                    <div class="card-buttons d-flex gap-2">
-                                        <a href="#post1-content" class="btn btn-primary btn-sm px-3" data-bs-toggle="collapse">წაიკითხე მეტი</a>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-solid fa-share-nodes"></i>
-                                        </button>
-                                    </div>
-                                    <div class="collapse mt-3" id="post1-content">
-                                        <div class="card card-body bg-light">
-                                            <p>Volvo FH16 არის ერთ-ერთი ყველაზე პრესტიჟული და საიმედო სატვირთო მანქანა ბაზარზე. ეს მოდელი გამოირჩევა შესანიშნავი ეკონომიურობით, კომფორტული საბორგილით და თანამედროვე ტექნოლოგიებით.</p>
-                                            <p>ჩვენს მარაგში შედის რამდენიმე ერთეული, რომლებიც გამოირჩევა:</p>
-                                            <ul>
-                                                <li>დაბალი გარბენი (120,000 კმ-ზე ნაკლები)</li>
-                                                <li>სრული სერვისის ისტორია</li>
-                                                <li>ორიგინალური გარანტია</li>
-                                                <li>Euro-6 სტანდარტი</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+        <?php if ($id > 0): ?>
+            <?php $img = post_image_url($post); ?>
+            <a href="blog.php" class="btn btn-outline-secondary mb-4">← უკან</a>
+
+            <div class="card blog-card blog-card-modern">
+              <div class="row g-0 align-items-stretch">
+                <div class="col-md-5 position-relative">
+                  <img src="<?= htmlspecialchars($img) ?>" class="img-fluid blog-img" alt="Blog">
+                  <span class="blog-tag">BLOG</span>
                 </div>
 
-                <!-- Blog Post 2 -->
-                <div class="col-lg-6" id="post2">
-                    <div class="card blog-card blog-card-modern h-100">
-                        <div class="row g-0 align-items-stretch">
-                            <div class="col-md-5 position-relative">
-                                <img src="../images/truck-1.jpg" class="img-fluid blog-img" alt="Truck Blog">
-                                <span class="blog-tag">LOGISTICS</span>
-                            </div>
-                            <div class="col-md-7 d-flex flex-column">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h5 class="card-title">როგორ ავირჩიოთ სწორი მძიმე სატვირთო მანქანა</h5>
-                                    <p class="card-text text-muted">სწორი სატვირთო მანქანის არჩევა საკმაოდ მნიშვნელოვანი გადაწყვეტილებაა. ამ სტატიაში გეტყვით რა ფაქტორებს უნდა მივაქციოთ ყურადღება.</p>
-                                    <div class="blog-meta mt-auto mb-3">
-                                        <span><i class="fa-regular fa-calendar"></i> დეკემბერი 29, 2025</span>
-                                        <span><i class="fa-regular fa-user"></i> ხვიჩა ესპანელი</span>
-                                    </div>
-                                    <div class="card-buttons d-flex gap-2">
-                                        <a href="#post2-content" class="btn btn-primary btn-sm px-3" data-bs-toggle="collapse">წაიკითხე მეტი</a>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-solid fa-share-nodes"></i>
-                                        </button>
-                                    </div>
-                                    <div class="collapse mt-3" id="post2-content">
-                                        <div class="card card-body bg-light">
-                                            <h6>ძირითადი კრიტერიუმები:</h6>
-                                            <ol>
-                                                <li><strong>გარბენი:</strong> გადაამოწმეთ რეალური გარბენი და სერვისის ისტორია</li>
-                                                <li><strong>სიმძლავრე:</strong> აირჩიეთ ძრავა თქვენი ტვირთის საჭიროებების შესაბამისად</li>
-                                                <li><strong>ტრანსმისია:</strong> ავტომატიკა უფრო კომფორტულია, მექანიკა - ეკონომიური</li>
-                                                <li><strong>ეკოლოგიური სტანდარტი:</strong> Euro-6 უზრუნველყოფს შესაბამისობას თანამედროვე მოთხოვნებთან</li>
-                                                <li><strong>გარანტია:</strong> შეამოწმეთ გარანტიის პირობები</li>
-                                            </ol>
-                                            <p>ჩვენი ექსპერტები დაგეხმარებიან სწორი არჩევანის გაკეთებაში.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-7 d-flex flex-column">
+                  <div class="card-body d-flex flex-column h-100">
+                    <h5 class="card-title"><?= htmlspecialchars($post["title"]) ?></h5>
 
-                <!-- Blog Post 3 -->
-                <div class="col-lg-6">
-                    <div class="card blog-card blog-card-modern h-100">
-                        <div class="row g-0 align-items-stretch">
-                            <div class="col-md-5 position-relative">
-                                <img src="../images/ship.jpg" class="img-fluid blog-img" alt="Shipping">
-                                <span class="blog-tag">გადაზიდვები</span>
-                            </div>
-                            <div class="col-md-7 d-flex flex-column">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h5 class="card-title">საერთაშორისო გადაზიდვების ახალი მარშრუტები</h5>
-                                    <p class="card-text text-muted">ჩვენ გავაფართოვეთ ჩვენი მარშრუტების ქსელი. ახლა ვასრულებთ რეგულარულ გადაზიდვებს ახალ დედნებზე.</p>
-                                    <div class="blog-meta mt-auto mb-3">
-                                        <span><i class="fa-regular fa-calendar"></i> ნოემბერი 15, 2025</span>
-                                        <span><i class="fa-regular fa-user"></i> დავით ნადარაია</span>
-                                    </div>
-                                    <div class="card-buttons d-flex gap-2">
-                                        <button class="btn btn-primary btn-sm px-3">წაიკითხე მეტი</button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-solid fa-share-nodes"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="blog-meta mb-3">
+                      <span><i class="fa-regular fa-calendar"></i> <?= htmlspecialchars($post["created_at"] ?? "") ?></span>
                     </div>
-                </div>
 
-                <!-- Blog Post 4 -->
-                <div class="col-lg-6">
-                    <div class="card blog-card blog-card-modern h-100">
-                        <div class="row g-0 align-items-stretch">
-                            <div class="col-md-5 position-relative">
-                                <img src="../images/certificate/1.jpg" class="img-fluid blog-img" alt="Certificates">
-                                <span class="blog-tag">სერტიფიკაცია</span>
-                            </div>
-                            <div class="col-md-7 d-flex flex-column">
-                                <div class="card-body d-flex flex-column h-100">
-                                    <h5 class="card-title">ISO 9001:2015 სერტიფიკაცია</h5>
-                                    <p class="card-text text-muted">ჩვენმა კომპანიამ მიიღო ISO 9001:2015 სერტიფიკატი, რაც ადასტურებს ჩვენი მომსახურების მაღალ ხარისხს.</p>
-                                    <div class="blog-meta mt-auto mb-3">
-                                        <span><i class="fa-regular fa-calendar"></i> ოქტომბერი 10, 2025</span>
-                                        <span><i class="fa-regular fa-user"></i> თამარ მიქაძე</span>
-                                    </div>
-                                    <div class="card-buttons d-flex gap-2">
-                                        <button class="btn btn-primary btn-sm px-3">წაიკითხე მეტი</button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </button>
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn">
-                                            <i class="fa-solid fa-share-nodes"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="text-muted" style="white-space:pre-wrap;">
+                      <?= nl2br(htmlspecialchars($post["content"])) ?>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+
+        <?php else: ?>
+
+            <div class="row g-4">
+
+              <?php foreach ($posts as $p): ?>
+                <?php
+                  $img = post_image_url($p);
+                  $ex = excerpt($p["content"] ?? "", 180);
+                ?>
+                <div class="col-lg-6">
+                  <div class="card blog-card blog-card-modern h-100">
+                    <div class="row g-0 align-items-stretch">
+                      <div class="col-md-5 position-relative">
+                        <img src="<?= htmlspecialchars($img) ?>" class="img-fluid blog-img" alt="Blog">
+                        <span class="blog-tag">BLOG</span>
+                      </div>
+                      <div class="col-md-7 d-flex flex-column">
+                        <div class="card-body d-flex flex-column h-100">
+                          <h5 class="card-title"><?= htmlspecialchars($p["title"]) ?></h5>
+
+                          <p class="card-text text-muted"><?= htmlspecialchars($ex) ?></p>
+
+                          <div class="blog-meta mt-auto mb-3">
+                            <span><i class="fa-regular fa-calendar"></i> <?= htmlspecialchars($p["created_at"] ?? "") ?></span>
+                          </div>
+
+                          <div class="card-buttons d-flex gap-2">
+                            <a href="blog.php?id=<?= (int)$p["id"] ?>" class="btn btn-primary btn-sm px-3">წაიკითხე მეტი</a>
+                            <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
+                              <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
+                              <i class="fa-solid fa-share-nodes"></i>
+                            </button>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+
+              <?php if (!$posts): ?>
+                <div class="col-12">
+                  <div class="alert alert-warning">ვერ მოიძებნა.</div>
+                </div>
+              <?php endif; ?>
+
+            </div>
+
+            <!-- Pagination -->
+            <?php if ($pages > 1): ?>
+              <nav class="mt-4">
+                <ul class="pagination justify-content-center">
+                  <?php for ($i=1; $i<=$pages; $i++): ?>
+                    <li class="page-item <?= ($i===$page) ? "active" : "" ?>">
+                      <a class="page-link" href="?q=<?= urlencode($q) ?>&page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                  <?php endfor; ?>
+                </ul>
+              </nav>
+            <?php endif; ?>
+
+        <?php endif; ?>
+
         </div>
     </section>
 
     <!-- Footer -->
-      <footer class="bg-dark text-white pt-5 pb-3">
+    <footer class="bg-dark text-white pt-5 pb-3">
         <div class="container">
             <div class="row g-4">
 
@@ -247,13 +312,13 @@
                 <div class="col-lg-2 col-6">
                     <h5 class="fw-bold mb-4">ლინკები</h5>
                     <ul class="list-unstyled text-secondary">
-                        <li class="mb-2"><a href="../index.html" class="text-decoration-none text-secondary">მთავარი</a>
+                        <li class="mb-2"><a href="../index.php" class="text-decoration-none text-secondary">მთავარი</a>
                         </li>
-                        <li class="mb-2"><a href="aboutus.html" class="text-decoration-none text-secondary">ჩვენს
+                        <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary">ჩვენს
                                 შესახებ</a></li>
-                        <li class="mb-2"><a href="gallery.html"
+                        <li class="mb-2"><a href="gallery.php"
                                 class="text-decoration-none text-secondary">გალერეა</a></li>
-                        <li class="mb-2"><a href="blog.html" class="text-decoration-none text-secondary">ბლოგი</a>
+                        <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary">ბლოგი</a>
                         </li>
                     </ul>
                 </div>
