@@ -130,34 +130,3 @@
         });
     });
 })();
-
-function seeMore1()
-{
-    let span = document.getElementById("see-more-span-1");
-    let button = document.getElementById("seeMore1");
-    if(span.classList.contains("d-none"))
-    {
-        span.classList.remove("d-none")
-        button.innerText = "ნაკლები"
-    }
-    else{
-        span.classList.add("d-none")
-        button.innerText = "მეტი"
-
-    }
-}
-function seeMore2()
-{
-    let span = document.getElementById("see-more-span-2");
-    let button = document.getElementById("seeMore2");
-    if(span.classList.contains("d-none"))
-    {
-        span.classList.remove("d-none")
-        button.innerText = "ნაკლები"
-    }
-    else{
-        span.classList.add("d-none")
-        button.innerText = "მეტი"
-
-    }
-}
