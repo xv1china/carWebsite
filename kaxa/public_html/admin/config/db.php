@@ -3,6 +3,7 @@ $host = "localhost";
 $db   = "car_dealer";
 $user = "root";
 $pass = ""; // თუ XAMPP-ზე default ცარიელია
+define('GOOGLE_TRANSLATE_API_KEY', 'PUT_YOUR_KEY');
 
 try {
   $pdo = new PDO(

@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . "/includes/auth.php";
 require __DIR__ . "/config/db.php";
+require __DIR__ . "/includes/translate.php";
 
 $success = "";
 $error = "";
@@ -13,12 +14,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $error = "Title და Content აუცილებელია.";
   } else {
 
-    // ჩაწერა blog ცხრილში
-    $stmt = $pdo->prepare("INSERT INTO blog (title, content, image) VALUES (?, ?, NULL)");
-    $stmt->execute([$title, $content]);
+    // ✅ translate pack
+    [$title_ka, $title_en, $title_ru] = translate_pack_ka($title);
+
+    // content ხშირად გრძელი ტექსტია — API error-ზე fallback მაინც იმუშავებს
+    [$content_ka, $content_en, $content_ru] = translate_pack_ka($content);
+
+    $stmt = $pdo->prepare("
+      INSERT INTO blog (title, content, image, title_ka, title_en, title_ru, content_ka, content_en, content_ru)
+      VALUES (?, ?, NULL, ?, ?, ?, ?, ?, ?)
+    ");
+    $stmt->execute([
+      $title, $content,
+      $title_ka, $title_en, $title_ru,
+      $content_ka, $content_en, $content_ru
+    ]);
+
     $postId = (int)$pdo->lastInsertId();
 
-    // image upload (optional)
+    // image upload (optional) — იგივე დაგიტოვე
     if (!empty($_FILES["image"]["name"])) {
       $tmp  = $_FILES["image"]["tmp_name"] ?? "";
       $name = $_FILES["image"]["name"] ?? "";
@@ -52,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 }
 ?>
+
+
 <!doctype html>
 <html lang="ka">
 <head>

@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . "/includes/auth.php";
 require __DIR__ . "/config/db.php";
+require __DIR__ . "/includes/translate.php";
 
 $success = "";
 $error = "";
@@ -13,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($_FILES["image"]["name"])) {
         $error = "სურათი აუცილებელია.";
     } else {
-        $tmp = $_FILES["image"]["tmp_name"] ?? "";
+        $tmp  = $_FILES["image"]["tmp_name"] ?? "";
         $name = $_FILES["image"]["name"] ?? "";
-        $err = $_FILES["image"]["error"] ?? UPLOAD_ERR_NO_FILE;
+        $err  = $_FILES["image"]["error"] ?? UPLOAD_ERR_NO_FILE;
         $size = (int)($_FILES["image"]["size"] ?? 0);
 
         $allowedExt = ["jpg", "jpeg", "png", "webp"];
@@ -33,20 +34,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($mime && strpos($mime, "image/") !== 0) {
                 $error = "ფაილი უნდა იყოს სურათი.";
             } else {
-                $stmt = $pdo->prepare("INSERT INTO gallery (title, description, image, status) VALUES (?, ?, '', ?)");
-                $stmt->execute([$title ?: null, $description ?: null, $status]);
-                $galleryId = (int) $pdo->lastInsertId();
+
+                // ✅ translate pack
+                [$title_ka, $title_en, $title_ru] = translate_pack_ka($title);
+                [$desc_ka, $desc_en, $desc_ru] = translate_pack_ka($description);
+
+                $stmt = $pdo->prepare("
+                  INSERT INTO gallery (
+                    title, description, image, status,
+                    title_ka, title_en, title_ru,
+                    description_ka, description_en, description_ru
+                  )
+                  VALUES (?, ?, '', ?, ?, ?, ?, ?, ?, ?)
+                ");
+                $stmt->execute([
+                  $title ?: null,
+                  $description ?: null,
+                  $status,
+                  $title_ka ?: null, $title_en ?: null, $title_ru ?: null,
+                  $desc_ka ?: null, $desc_en ?: null, $desc_ru ?: null
+                ]);
+
+                $galleryId = (int)$pdo->lastInsertId();
 
                 $uploadDir = dirname(__DIR__) . "/assets/uploads/gallery/" . $galleryId . "/";
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
+                if (!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+
                 $fileName = "gallery_" . uniqid("", true) . "." . $ext;
 
                 if (move_uploaded_file($tmp, $uploadDir . $fileName)) {
                     $up = $pdo->prepare("UPDATE gallery SET image = ? WHERE id = ?");
                     $up->execute([$fileName, $galleryId]);
-                    $success = "გალერეის ელემენტი დაემატა ✅ (ID: $galleryId)";
                     header("Location: gallery-manage.php");
                     exit;
                 } else {
@@ -57,6 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 <!doctype html>
 <html lang="ka">
 <head>

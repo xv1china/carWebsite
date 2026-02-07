@@ -58,7 +58,7 @@ if ($maxPrice > 0) {
 $whereSql = $where ? ("WHERE " . implode(" AND ", $where)) : "";
 
 // ---- Total count ----
-$stmtCount = $pdo->prepare("SELECT COUNT(*) FROM cars c $whereSql");
+$stmtCount = $pdo->prepare("SELECT COUNT(*) FROM car_main c $whereSql");
 $stmtCount->execute($params);
 $total = (int)$stmtCount->fetchColumn();
 
@@ -67,8 +67,8 @@ $totalPages = (int)ceil($total / $limit);
 // ---- Data query (first_image) ----
 $sql = "
   SELECT c.*,
-         (SELECT image FROM car_images WHERE car_id = c.id ORDER BY id ASC LIMIT 1) AS first_image
-  FROM cars c
+         (SELECT image FROM car_main_images WHERE car_id = c.id ORDER BY id ASC LIMIT 1) AS first_image
+  FROM car_main c
   $whereSql
   ORDER BY c.created_at DESC
   LIMIT $limit OFFSET $offset
@@ -82,7 +82,7 @@ $data = [];
 foreach ($rows as $r) {
   $img = "";
   if (!empty($r["first_image"])) {
-    $img = "/list-html/assets/uploads/cars/" . (int)$r["id"] . "/" . $r["first_image"];
+    $img = "/public-html/assets/uploads/cars/" . (int)$r["id"] . "/" . $r["first_image"];
   }
 
   $data[] = [
