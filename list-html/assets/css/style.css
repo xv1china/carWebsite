@@ -1,0 +1,89 @@
+:root{
+  --bs-primary: #198754;        /* Bootstrap green */
+  --bs-primary-rgb: 25,135,84;
+}
+
+body{
+  background: #f3f8f5;
+}
+
+.navbar{
+  border-bottom: 2px solid #198754;
+}
+
+.navbar .nav-link{
+  color:#1f2937;
+  font-weight:500;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover{
+  color:#198754;
+}
+
+h2{
+  color:#14532d;
+  font-weight:700;
+}
+
+.card{
+  border:1px solid #d1fae5;
+  border-radius:16px;
+}
+
+.card:hover{
+  transition: .2s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.car-img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  background:#e5e7eb;
+}
+
+.badge{
+  border-radius:999px;
+}
+
+.badge.text-bg-primary{
+  background:#198754 !important;
+}
+
+.btn-primary{
+  background:#198754;
+  border-color:#198754;
+}
+
+.btn-primary:hover{
+  background:#157347;
+  border-color:#157347;
+}
+
+.btn-outline-secondary{
+  border-color:#198754;
+  color:#198754;
+}
+
+.btn-outline-secondary:hover{
+  background:#198754;
+  color:#fff;
+}
+
+.btn-outline-dark{
+  border-color:#198754;
+  color:#198754;
+}
+
+.btn-outline-dark:hover{
+  background:#198754;
+  color:#fff;
+}
+
+.form-control:focus,
+.form-select:focus{
+  border-color:#198754;
+  box-shadow:0 0 0 .2rem rgba(25,135,84,.25);
+}
