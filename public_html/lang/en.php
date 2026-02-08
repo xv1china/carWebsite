@@ -25,7 +25,7 @@ return [
   'ship_land_text' => 'One of our company’s priorities is road transportation from Europe, the Caucasus and any CIS country. Using land (road-rail) transport, we deliver cargo both within Georgia and beyond.',
   'ship_sea_title' => 'Sea',
   'ship_sea_text' => 'We provide sea freight worldwide with full and partial container loads, bulk shipments, and oversized cargo. If needed, we can charter a vessel.',
-  'ship_btn' => 'We can go anywhere',
+  'ship_btn' => 'About us',
 
   // Badges / units
   'sold' => 'Sold',

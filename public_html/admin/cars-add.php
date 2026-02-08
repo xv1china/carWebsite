@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $fileName = uniqid("car_", true) . "." . $ext;
 
                 if (move_uploaded_file($tmp, $uploadDir . $fileName)) {
-                    $stmtImg = $pdo->prepare("INSERT INTO car_images (car_id, image) VALUES (?, ?)");
+                    $stmtImg = $pdo->prepare("INSERT INTO car_main_images (car_id, image) VALUES (?, ?)");
                     $stmtImg->execute([$carId, $fileName]);
                 } else {
                     $uploadErrorCount++;

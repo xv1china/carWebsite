@@ -26,34 +26,41 @@ require __DIR__ . "/includes/lang.php";
 
         <!-- Language -->
         <div class="dropdown">
-          <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown">
-            <?php
-              $flag = "assets/images/Flag_of_Georgia.svg.png";
-              if ($lang === "en") $flag = "assets/images/Flag_of_the_United_States.svg.webp";
-              if ($lang === "ru") $flag = "assets/images/Flag_of_Russia.svg.png";
-            ?>
-            <img src="<?= htmlspecialchars($flag) ?>" width="30" height="20" alt="">
-            <?= strtoupper($lang) ?>
-          </button>
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        <?php
+                        $flag = "assets/images/language_flag/Flag_of_Georgia.svg.png";
+                        if ($lang === "en") $flag = "assets/images/language_flag/Flag_of_the_United_States.svg.jpg";
+                        if ($lang === "ru") $flag = "assets/images/language_flag/Flag-Russia.jpg"; // თუ არ გაქვს, შეცვალე
+                        ?>
+                        <img src="<?= htmlspecialchars($flag) ?>" width="30" height="20" alt="">
+                        <?= strtoupper($lang) ?>
+                    </button>
 
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('en')) ?>">
-                <img src="assets/images/Flag_of_the_United_States.svg.webp" width="30" height="20" alt="">EN
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('ka')) ?>">
-                <img src="assets/images/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('ru')) ?>">
-                <img src="assets/images/Flag_of_Russia.svg.png" width="30" height="20" alt="">RU
-              </a>
-            </li>
-          </ul>
-        </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('ka')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('en')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_the_United_States.svg.jpg" width="30" height="20"
+                                    alt="">EN
+                            </a>
+                        </li>
+                        
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('ru')) ?>">
+                                <img src="assets/images/language_flag/Flag-Russia.jpg" width="30" height="20" alt="">RU
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
         <!-- Currency -->
         <div class="dropdown">
@@ -159,16 +166,14 @@ require __DIR__ . "/includes/lang.php";
           <div class="mt-3">
             <h5 class="fw-bold mb-2"><?= t('contact_social','მოგვიყევით სოციალური ქსელებით') ?></h5>
             <div class="d-flex gap-3">
-              <a href="#" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width:45px; height:45px;"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width:45px; height:45px;"><i class="fa-brands fa-linkedin"></i></a>
-              <a href="#" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width:45px; height:45px;"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.facebook.com/iakubik" target="_blank" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width:45px; height:45px;"><i class="fa-brands fa-facebook"></i></a>
             </div>
           </div>
 
           <!-- Google Map -->
           <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm mt-4">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23676.24505446439!2d41.644123!3d42.15012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd7e64f6241%3A0x696644838634e2c!2sTbilisi!5e0!3m2!1ska!2sge!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
-          </div>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d310.7195352296747!2d41.71073248976298!3d42.19137712521966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x405db7cdbace6a17%3A0x880e21d2c63e533a!2sKkk%26company!5e0!3m2!1ska!2sge!4v1770559561315!5m2!1ska!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
 
         <!-- Contact Form -->
@@ -253,62 +258,75 @@ require __DIR__ . "/includes/lang.php";
 
   <!-- Footer (same keys as index) -->
   <footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-      <div class="row g-4">
+        <div class="container">
+            <div class="row g-4">
 
-        <div class="col-lg-4">
-          <img src="assets/images/logo.png" width="80" class="mb-3" alt="Logo">
-          <p class="text-secondary"><?= t('footer_desc','საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?></p>
-          <div class="d-flex gap-3 mt-4">
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
-          </div>
+                <div class="col-lg-4">
+                    <img src="assets/images/logo.png" width="80" class="mb-3" alt="Logo">
+                    <p class="text-secondary"><?= t('footer_desc', 'საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?></p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="https://www.facebook.com/iakubik" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h5 class="fw-bold mb-4"><?= t('footer_links', 'ლინკები') ?></h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2"><a href="index.php" class="text-decoration-none text-secondary"><?= t('nav_home', 'მთავარი') ?></a></li>
+                        <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary"><?= t('nav_about', 'ჩვენს შესახებ') ?></a></li>
+                        <li class="mb-2"><a href="gallery.php" class="text-decoration-none text-secondary"><?= t('nav_gallery', 'გალერეა') ?></a></li>
+                        <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary"><?= t('nav_blog', 'ბლოგი') ?></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <h5 class="fw-bold mb-4"><?= t('footer_contact', 'კონტაქტი') ?></h5>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('finance_dept', 'ფინანსური განყოფილება') ?>: <br>
+                        +995 551 04 75 35
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('sales_manager', 'გაყიდვების მენეჯერი') ?>: <br>
+                        +995 551 45 84 54
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('service_manager', 'სერვის ცენტრის მენეჯერი') ?>: <br>
+                        +995 599 10 05 77
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-envelope me-2"></i>
+                        info@kkk-co.ge
+                    </p>
+                </div>
+
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-4"><?= t('footer_address', 'მისამართი') ?></h5>
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                        <?= t('addr_1', 'ფოთი, წმ გიორგის ქ. №11') ?>
+                    </p>
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                        <?= t('addr_2', 'ფოთი, 9 აპრილის ხეივანი №28') ?>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="mt-5 mb-4 border-secondary">
+
+            <div class="text-center text-secondary small">
+                © 2025 KKK CO. <?= t('rights', 'ყველა უფლება დაცულია.') ?>
+            </div>
         </div>
-
-        <div class="col-lg-2 col-6">
-          <h5 class="fw-bold mb-4"><?= t('footer_links','ლინკები') ?></h5>
-          <ul class="list-unstyled text-secondary">
-            <li class="mb-2"><a href="index.php" class="text-decoration-none text-secondary"><?= t('nav_home','მთავარი') ?></a></li>
-            <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary"><?= t('nav_about','ჩვენს შესახებ') ?></a></li>
-            <li class="mb-2"><a href="gallery.php" class="text-decoration-none text-secondary"><?= t('nav_gallery','გალერეა') ?></a></li>
-            <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary"><?= t('nav_blog','ბლოგი') ?></a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <h5 class="fw-bold mb-4"><?= t('footer_contact','კონტაქტი') ?></h5>
-
-          <p class="text-secondary mb-2">
-            <i class="fa-solid fa-phone me-2"></i>
-            <?= t('finance_dept','ფინანსური განყოფილება') ?>: <br> +995 551 04 75 35
-          </p>
-          <p class="text-secondary mb-2">
-            <i class="fa-solid fa-phone me-2"></i>
-            <?= t('sales_manager','გაყიდვების მენეჯერი') ?>: <br> +995 551 45 84 54
-          </p>
-          <p class="text-secondary mb-2">
-            <i class="fa-solid fa-phone me-2"></i>
-            <?= t('service_manager','სერვის ცენტრის მენეჯერი') ?>: <br> +995 599 100 577
-          </p>
-          <p class="text-secondary mb-2">
-            <i class="fa-solid fa-envelope me-2"></i>
-            info@kkk-co.ge
-          </p>
-        </div>
-
-        <div class="col-lg-3">
-          <h5 class="fw-bold mb-4"><?= t('footer_address','მისამართი') ?></h5>
-          <p class="text-secondary mb-2"><i class="fa-solid fa-location-dot me-2"></i><?= t('addr_1','ფოთი, წმ გიორგის ქ. №11') ?></p>
-          <p class="text-secondary mb-2"><i class="fa-solid fa-location-dot me-2"></i><?= t('addr_2','ფოთი, 9 აპრილის ხეივანი №28') ?></p>
-        </div>
-
-      </div>
-
-      <hr class="mt-5 mb-4 border-secondary">
-      <div class="text-center text-secondary small">© 2025 KKK CO. <?= t('rights','ყველა უფლება დაცულია.') ?></div>
-    </div>
-  </footer>
+    </footer>
 
   <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
     <i class="fa-solid fa-arrow-up"></i>

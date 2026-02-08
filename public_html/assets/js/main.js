@@ -130,3 +130,23 @@
         });
     });
 })();
+
+function toggleText(textId, btnId) {
+  const text = document.getElementById(textId);
+  const btn = document.getElementById(btnId);
+  if (!text || !btn) return;
+
+  const isClamped = text.classList.contains("clamp-4");
+
+  if (isClamped) {
+    // გახსნა
+    text.classList.remove("clamp-4");
+    btn.innerText = "ნაკლები";
+    btn.classList.remove("seeMore--faded");
+  } else {
+    // დახურვა
+    text.classList.add("clamp-4");
+    btn.innerText = "… მეტი";
+    btn.classList.add("seeMore--faded");
+  }
+}

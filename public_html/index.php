@@ -29,7 +29,7 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>კკკ & კომპანია - სატვირთო მანქანების დილერი საქართველოში | Truck Dealership</title>
+    <title>კკკ & კომპანი - სატვირთო მანქანების დილერი საქართველოში | Truck Dealership</title>
     <meta name="description"
         content="KKK & Company - საიმედო სატვირთო მანქანების დილერი საქართველოში. ევროპული ხარისხის მძიმე ტექნიკა, გადაზიდვები და ლოჯისტიკური მომსახურება.">
     <meta name="keywords"
@@ -104,9 +104,11 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
                         data-bs-toggle="dropdown">
                         <?php
-                        $flag = "assets/images/Flag_of_Georgia.svg.png";
-                        if ($lang === "en") $flag = "assets/images/Flag_of_the_United_States.svg.webp";
-                        if ($lang === "ru") $flag = "assets/images/Flag_of_Russia.svg.png"; // თუ არ გაქვს, შეცვალე
+                        $flag = "assets/images/language_flag/Flag_of_Georgia.svg.png";
+                        if ($lang === "en")
+                            $flag = "assets/images/language_flag/Flag_of_the_United_States.svg.jpg";
+                        if ($lang === "ru")
+                            $flag = "assets/images/language_flag/Flag-Russia.jpg"; // თუ არ გაქვს, შეცვალე
                         ?>
                         <img src="<?= htmlspecialchars($flag) ?>" width="30" height="20" alt="">
                         <?= strtoupper($lang) ?>
@@ -115,21 +117,24 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     <ul class="dropdown-menu">
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-1"
-                                href="<?= htmlspecialchars(lang_url('en')) ?>">
-                                <img src="assets/images/Flag_of_the_United_States.svg.webp" width="30" height="20"
-                                    alt="">EN
+                                href="<?= htmlspecialchars(lang_url('ka')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_Georgia.svg.png" width="30" height="20"
+                                    alt="">KA
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-1"
-                                href="<?= htmlspecialchars(lang_url('ka')) ?>">
-                                <img src="assets/images/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA
+                                href="<?= htmlspecialchars(lang_url('en')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_the_United_States.svg.jpg" width="30"
+                                    height="20" alt="">EN
                             </a>
+                        </li>
+
                         </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-1"
                                 href="<?= htmlspecialchars(lang_url('ru')) ?>">
-                                <img src="assets/images/Flag_of_Russia.svg.png" width="30" height="20" alt="">RU
+                                <img src="assets/images/language_flag/Flag-Russia.jpg" width="30" height="20" alt="">RU
                             </a>
                         </li>
                     </ul>
@@ -168,8 +173,8 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     <li class="nav-item"><a class="nav-link"
                             href="gallery.php"><?= t('nav_gallery', 'ფოტო გალერეა') ?></a></li>
                     <li class="nav-item"><a class="nav-link" href="blog.php"><?= t('nav_blog', 'ბლოგი') ?></a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="contact.php"><?= t('nav_contact', 'კონტაქტი') ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php"><?= t('nav_contact', 'კონტაქტი') ?></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -188,7 +193,7 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
             <div class="carousel-item active">
                 <img src="assets/images/index_slider_iamges/index_slider_1.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 1">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption ">
                     <h2><?= t('slider_1_title', 'მძიმე ტექნიკა') ?></h2>
                     <p><?= t('slider_1_text', 'საიმედო სატვირთო მანქანები მშენებლობის, ტრანსპორტისა და ლოჯისტიკისთვის.') ?>
                     </p>
@@ -198,7 +203,7 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
             <div class="carousel-item">
                 <img src="assets/images/index_slider_iamges/index_slider_2.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 2">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption ">
                     <h2><?= t('slider_2_title', 'ევროპული ხარისხი') ?></h2>
                     <p><?= t('slider_2_text', 'ევროპიდან იმპორტირებული მაღალი წარმადობის სატვირთო მანქანები.') ?></p>
                 </div>
@@ -207,7 +212,7 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
             <div class="carousel-item">
                 <img src="assets/images/index_slider_iamges/index_slider_3.jpg" class="d-block w-100 carousel-img"
                     alt="Truck 3">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption ">
                     <h2><?= t('slider_3_title', 'საუკეთესო ფასის გარანტია') ?></h2>
                     <p><?= t('slider_3_text', 'კონკურენტული ფასები და მოქნილი შესყიდვის ვარიანტები.') ?></p>
                 </div>
@@ -224,46 +229,95 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
         </button>
     </div>
 
-    <div class="container text-center my-4">
-        <h2><?= t('shipping', 'გადაზიდვები') ?></h2>
-    </div>
 
     <!-- Old Cards Section -->
-    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 my-4">
-        <div class="card" style="width: 28rem;">
-            <img src="assets/images/cardTax/pics05.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?= t('ship_land_title', 'სახმელეთო') ?></h5>
-                <p class="card-text">
-                    <?= t(
-                        'ship_land_text',
-                        'ჩვენი კომპანიის ერთ-ერთი პრიორიტეტია საავტომობილო გადაზიდვები ევროპის, კავკასიის და დსთ-ს ნებისმიერი ქვეყნიდან. სახმელეთო (საავტომობილო-სარკინიგზო) ტრანსპორტით ჩვენ ვახორციელებთ ტვირთების ტრანსპორტირებას, როგორც საქართველოს ტერიტორიაზე'
-                    ) ?>
-                </p>
-                <a href="aboutus.php#shipping" class="btn btn-primary"><?= t('ship_btn', 'წავალთ ყველგან') ?></a>
-            </div>
-        </div>
+    <div class="container-fluid d-flex justify-content-center flex-wrap gap-3 my-4 shipping-cards">
 
-        <div class="card" style="width: 28rem;">
-            <img src="assets/images/cardTax/pics06.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?= t('ship_sea_title', 'საზღვაო') ?></h5>
-                <p class="card-text">
-                    <?= t(
-                        'ship_sea_text',
-                        'ტვირთების საზღვაო გადაზიდვებს ვახორციელებთ მთელი მსოფლიოს მაშტაბით სრულად და ნაწილობრივ დატვირთული კონტეინერებით, ნაყარი ფორმით, ასევე არაგაბარიტული ტვირთების გადაზიდვებს. საჭიროების შემთხვევაში დავფრახტავთ გემს.'
-                    ) ?>
-                </p>
-                <a href="aboutus.php#shipping" class="btn btn-primary"><?= t('ship_btn', 'წავალთ ყველგან') ?></a>
+        <!-- CARD 1 -->
+        <article class="card shipping-card shipping-card--wide">
+            <div class="shipping-card__media">
+                <img src="assets/images/cardTax/pics05.jpg" class="shipping-card__img" alt="Land shipping">
+
+                <div class="shipping-card__overlay">
+                    <div class="shipping-card__content">
+
+                        <h5 class="shipping-card__title">
+                            <?= t('ship_land_title', 'სახმელეთო') ?>
+                        </h5>
+
+                        <!-- ✅ Full text stays here; default shows same-height preview via clamp -->
+                        <p class="shipping-card__text clamp-4" id="shipText1">
+                            <?= t(
+                                'ship_land_text',
+                                'ჩვენი კომპანიის ერთ-ერთი პრიორიტეტია საავტომობილო გადაზიდვები ევროპის, კავკასიის და დსთ-ს ნებისმიერი ქვეყნიდან. 
+              სახმელეთო (საავტომობილო-სარკინიგზო) ტრანსპორტით ჩვენ ვახორციელებთ ტვირთების ტრანსპორტირებას, როგორც საქართველოს ტერიტორიაზე, ასევე საერთაშორისო მიმართულებით.'
+                            ) ?>
+                        </p>
+
+                        <!-- ✅ Button text is translated and does NOT break when language changes -->
+                        <button id="seeMore1" class="seeMore seeMore--faded" type="button"
+                            data-more="<?= t('more', 'მეტი') ?>" data-less="<?= t('less', 'ნაკლები') ?>"
+                            onclick="toggleText('shipText1','seeMore1')">
+                            … <?= t('more', 'მეტი') ?>
+                        </button>
+
+                        <div class="shipping-card__actions">
+                            <a href="aboutus.php#shipping" class="btn btn-primary shipping-card__btn">
+                                <?= t('ship_btn', 'ჩვენს შესახებ') ?>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="card shipping-card shipping-card--wide">
+            <div class="shipping-card__media">
+                <img src="assets/images/cardTax/pics06.jpg" class="shipping-card__img" alt="Sea shipping">
+
+                <div class="shipping-card__overlay">
+                    <div class="shipping-card__content">
+
+                        <h5 class="shipping-card__title">
+                            <?= t('ship_sea_title', 'საზღვაო') ?>
+                        </h5>
+
+                        <p class="shipping-card__text clamp-4" id="shipText2">
+                            <?= t(
+                                'ship_sea_text',
+                                'ტვირთების საზღვაო გადაზიდვებს ვახორციელებთ მთელი მსოფლიოს მასშტაბით სრულად და ნაწილობრივ დატვირთული კონტეინერებით, ნაყარი ფორმით, ასევე არაგაბარიტული ტვირთების გადაზიდვებს. 
+              დამატებით ვთავაზობთ კონსოლიდაციას, დოკუმენტაციის მართვას და მარშრუტის ოპტიმიზაციას.'
+                            ) ?>
+                        </p>
+
+                        <button id="seeMore2" class="seeMore seeMore--faded" type="button"
+                            data-more="<?= t('more', 'მეტი') ?>" data-less="<?= t('less', 'ნაკლები') ?>"
+                            onclick="toggleText('shipText2','seeMore2')">
+                            … <?= t('more', 'მეტი') ?>
+                        </button>
+
+                        <div class="shipping-card__actions">
+                            <a href="aboutus.php#shipping" class="btn btn-primary shipping-card__btn">
+                                <?= t('ship_btn', 'ჩვენს შესახებ') ?>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="section-coco">
+        <div class="container-co">
+            <h2><?= t('best_service', 'გასაყიდი ტექნიკა') ?></h2>
         </div>
     </div>
 
-    <div class="container-fluid d-flex justify-content-center align-items-center mt-3 flex-wrap"
-        style="gap: 10px; background-color: #0d6efd; text-align: center;">
-        <img src="assets/images/logo.png" alt="logo">
-        <h2 style="color: white;"><?= t('best_service', 'გთავაზობთ საუკეთესო მომსახურეობას') ?></h2>
-    </div>
+
 
     <!-- New Swiper Section -->
     <div class="container my-5">
@@ -294,10 +348,13 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                                 </h2>
 
                                 <ul class="truck-specs">
-                                    <li><i class="fa-solid fa-road"></i> <?= (int) ($car['mileage'] ?? 0) ?> <?= t('km', 'კმ') ?>
+                                    <li><i class="fa-solid fa-road"></i> <?= (int) ($car['mileage'] ?? 0) ?>
+                                        <?= t('km', 'კმ') ?>
                                     </li>
-                                    <li><i class="fa-solid fa-gears"></i> <?= htmlspecialchars($car['gearbox'] ?? '-') ?></li>
-                                    <li><i class="fa-solid fa-gas-pump"></i> <?= htmlspecialchars($car['fuel'] ?? '-') ?></li>
+                                    <li><i class="fa-solid fa-gears"></i> <?= htmlspecialchars($car['gearbox'] ?? '-') ?>
+                                    </li>
+                                    <li><i class="fa-solid fa-gas-pump"></i> <?= htmlspecialchars($car['fuel'] ?? '-') ?>
+                                    </li>
                                 </ul>
 
                                 <div class="truck-footer">
@@ -320,9 +377,20 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <div class="container-fluid d-flex justify-content-center align-items-center"
-        style="gap: 100px; background-color: #0d6efd; padding: 20px;">
-        <h2 style="color: white;"><?= t('blog', 'ბლოგი') ?></h2>
+    <div class="container mt-5 mb-4">
+        <div class="d-flex align-items-end justify-content-between border-bottom pb-3">
+            <div>
+                <p class="text-primary fw-bold text-uppercase mb-1" style="letter-spacing: 2px; font-size: 0.8rem;">
+                    News & Articles
+                </p>
+                <h2 class="fw-bold display-6 text-dark m-0">
+                    <?= t('blog', 'ბლოგი') ?>
+                </h2>
+            </div>
+            <a href="blog.php" class="btn-arrow-link">
+                <?= t('view_all', 'ყველას ნახვა') ?> <i class="fa-solid fa-arrow-right-long ms-2"></i>
+            </a>
+        </div>
     </div>
 
     <div class="container my-5">
@@ -335,7 +403,8 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     : "assets/images/truck-1.jpg";
 
                 $excerpt = mb_substr(trim(strip_tags($b["content"] ?? "")), 0, 100);
-                if (mb_strlen(trim(strip_tags($b["content"] ?? ""))) > 100) $excerpt .= "...";
+                if (mb_strlen(trim(strip_tags($b["content"] ?? ""))) > 100)
+                    $excerpt .= "...";
                 ?>
 
                 <div class="col-lg-6 col-12">
@@ -365,12 +434,10 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
 
                                     <div class="card-buttons d-flex gap-2">
                                         <a href="blog.php?id=<?= (int) $b["id"] ?>" class="btn btn-primary btn-sm px-3">
-                                            <?= t('read_more', 'წაიკითხე მეტი') ?>
+                                            <?= t('read_more', ' სრულად') ?>
                                         </a>
 
-                                        <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
-                                            <i class="fa-regular fa-bookmark"></i>
-                                        </button>
+
                                         <button class="btn btn-outline-secondary btn-sm icon-btn" type="button">
                                             <i class="fa-solid fa-share-nodes"></i>
                                         </button>
@@ -410,78 +477,91 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col-lg-6 ps-lg-5">
                     <h6 class="text-primary fw-bold text-uppercase"><?= t('about_small', 'ჩვენს შესახებ') ?></h6>
                     <h2 class="display-6 fw-bold mb-4"><?= t('about_title', 'საიმედო პარტნიორი ლოჯისტიკაში') ?></h2>
-                    <p class="lead text-muted"><?= t('about_lead', 'ჩვენ გთავაზობთ სრულ ლოჯისტიკურ მომსახურებას მთელი საქართველოსა და ევროპის მასშტაბით.') ?></p>
-                    <p><?= t('about_p1', 'ჩვენი კომპანია წლებია უზრუნველყოფს ტვირთების უსაფრთხო და სწრაფ გადაზიდვას. ჩვენი ავტოპარკი აღჭურვილია თანამედროვე სტანდარტების მქონე სატვირთო ავტომობილებით, რაც გარანტიას იძლევა თქვენი ტვირთის დაცულობაზე.') ?></p>
-                    <a href="aboutus.php" class="btn btn-primary px-4 py-2 mt-3"><?= t('about_btn', 'გაიგეთ მეტი') ?></a>
+                    <p class="lead text-muted">
+                        <?= t('about_lead', 'ჩვენ გთავაზობთ სრულ ლოჯისტიკურ მომსახურებას მთელი საქართველოსა და ევროპის მასშტაბით.') ?>
+                    </p>
+                    <p><?= t('about_p1', 'ჩვენი კომპანია წლებია უზრუნველყოფს ტვირთების უსაფრთხო და სწრაფ გადაზიდვას. ჩვენი ავტოპარკი აღჭურვილია თანამედროვე სტანდარტების მქონე სატვირთო ავტომობილებით, რაც გარანტიას იძლევა თქვენი ტვირთის დაცულობაზე.') ?>
+                    </p>
+                    <a href="aboutus.php"
+                        class="btn btn-primary px-4 py-2 mt-3"><?= t('about_btn', 'გაიგეთ მეტი') ?></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-light">
-        <div class="container text-center mb-5">
-            <h6 class="text-primary fw-bold text-uppercase"><?= t('services_small', 'სერვისები') ?></h6>
-            <h2 class="fw-bold"><?= t('services_title', 'რას ვთავაზობთ მომხმარებელს') ?></h2>
-        </div>
+<section class="py-5 bg-light">
+    <div class="container text-center mb-5">
+        <h6 class="text-primary fw-bold text-uppercase">
+            <?= t('services_small', 'სერვისები') ?>
+        </h6>
+        <h2 class="fw-bold">
+            <?= t('services_title', 'რას ვთავაზობთ მომხმარებელს') ?>
+        </h2>
+    </div>
 
-        <div class="container">
-            <div class="row g-4 justify-content-center">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
-                        <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                            style="width:70px;height:70px;">
-                            <i class="fa-solid fa-truck fa-2x"></i>
-                        </div>
-                        <h5 class="fw-bold"><?= t('srv_1_t', 'სახმელეთო გადაზიდვები') ?></h5>
-                        <p class="small text-muted"><?= t('srv_1_p', 'ტვირთების გადაზიდვა ევროპისა და აზიის მიმართულებით.') ?></p>
+            <!-- 1 -->
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                    <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
+                        style="width:70px;height:70px;">
+                        <i class="fa-solid fa-truck fa-2x"></i>
                     </div>
+                    <h5 class="fw-bold"><?= t('srv_1_t', 'სახმელეთო გადაზიდვები') ?></h5>
+                    <p class="small text-muted">
+                        <?= t('srv_1_p', 'ტვირთების გადაზიდვა ევროპისა და აზიის მიმართულებით.') ?>
+                    </p>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
-                        <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                            style="width:70px;height:70px;">
-                            <i class="fa-solid fa-ship fa-2x"></i>
-                        </div>
-                        <h5 class="fw-bold"><?= t('srv_2_t', 'საზღვაო გადაზიდვები') ?></h5>
-                        <p class="small text-muted"><?= t('srv_2_p', 'კონტეინერული და ტვირთების საზღვაო ტრანსპორტირება.') ?></p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
-                        <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                            style="width:70px;height:70px;">
-                            <i class="fa-solid fa-file-shield fa-2x"></i>
-                        </div>
-                        <h5 class="fw-bold"><?= t('srv_3_t', 'საბაჟო-საბროკერო მომსახურება') ?></h5>
-                        <p class="small text-muted"><?= t('srv_3_p', 'დოკუმენტაცია და საბაჟო პროცედურების სრული მხარდაჭერა.') ?></p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 ">
-                    <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
-                        <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                            style="width:70px;height:70px;">
-                            <i class="fa-solid fa-boxes-stacked fa-2x"></i>
-                        </div>
-                        <h5 class="fw-bold"><?= t('srv_4_t', 'საკონტეინერო გადაზიდვები') ?></h5>
-                        <p class="small text-muted"><?= t('srv_4_p', 'უსაფრთხო და ეფექტური კონტეინერული ლოჯისტიკა.') ?></p>
-                    </div>
-                </div>
-
-                <div class="col-12 service-wide">
-                    <div class="card h-100 service-card border-0 shadow-sm p-4 text-center">
-                        <div class="icon-box bg-danger-subtle text-danger rounded-circle mx-auto mb-3">
-                            <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
-                        </div>
-                        <h5 class="fw-bold"><?= t('srv_5_t', 'სახიფათო ტვირთები') ?></h5>
-                        <p class="small text-muted"><?= t('srv_5_p', 'ADR სტანდარტების დაცვით სახიფათო ტვირთების გადაზიდვა.') ?></p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- 2 -->
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                    <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
+                        style="width:70px;height:70px;">
+                        <i class="fa-solid fa-ship fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold"><?= t('srv_2_t', 'საზღვაო გადაზიდვები') ?></h5>
+                    <p class="small text-muted">
+                        <?= t('srv_2_p', 'კონტეინერული და ტვირთების საზღვაო ტრანსპორტირება.') ?>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                    <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
+                        style="width:70px;height:70px;">
+                        <i class="fa-solid fa-file-shield fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold"><?= t('srv_3_t', 'საბაჟო-საბროკერო მომსახურება') ?></h5>
+                    <p class="small text-muted">
+                        <?= t('srv_3_p', 'დოკუმენტაცია და საბაჟო პროცედურების სრული მხარდაჭერა.') ?>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="col-lg-6 col-md-6">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center service-card">
+                    <div class="icon-box bg-primary-subtle text-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
+                        style="width:70px;height:70px;">
+                        <i class="fa-solid fa-boxes-stacked fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold"><?= t('srv_4_t', 'საკონტეინერო გადაზიდვები') ?></h5>
+                    <p class="small text-muted">
+                        <?= t('srv_4_p', 'უსაფრთხო და ეფექტური კონტეინერული ლოჯისტიკა.') ?>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
         </div>
     </section>
 
@@ -491,21 +571,27 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
 
                 <div class="col-lg-4">
                     <img src="assets/images/logo.png" width="80" class="mb-3" alt="Logo">
-                    <p class="text-secondary"><?= t('footer_desc', 'საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?></p>
+                    <p class="text-secondary">
+                        <?= t('footer_desc', 'საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?>
+                    </p>
                     <div class="d-flex gap-3 mt-4">
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/iakubik" class="text-white  fs-5"><i
+                                class="fa-brands fa-facebook"></i></a>
                     </div>
                 </div>
 
                 <div class="col-lg-2 col-6">
                     <h5 class="fw-bold mb-4"><?= t('footer_links', 'ლინკები') ?></h5>
                     <ul class="list-unstyled text-secondary">
-                        <li class="mb-2"><a href="index.php" class="text-decoration-none text-secondary"><?= t('nav_home', 'მთავარი') ?></a></li>
-                        <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary"><?= t('nav_about', 'ჩვენს შესახებ') ?></a></li>
-                        <li class="mb-2"><a href="gallery.php" class="text-decoration-none text-secondary"><?= t('nav_gallery', 'გალერეა') ?></a></li>
-                        <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary"><?= t('nav_blog', 'ბლოგი') ?></a></li>
+                        <li class="mb-2"><a href="index.php"
+                                class="text-decoration-none text-secondary"><?= t('nav_home', 'მთავარი') ?></a></li>
+                        <li class="mb-2"><a href="aboutus.php"
+                                class="text-decoration-none text-secondary"><?= t('nav_about', 'ჩვენს შესახებ') ?></a>
+                        </li>
+                        <li class="mb-2"><a href="gallery.php"
+                                class="text-decoration-none text-secondary"><?= t('nav_gallery', 'გალერეა') ?></a></li>
+                        <li class="mb-2"><a href="blog.php"
+                                class="text-decoration-none text-secondary"><?= t('nav_blog', 'ბლოგი') ?></a></li>
                     </ul>
                 </div>
 
@@ -515,19 +601,19 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-phone me-2"></i>
                         <?= t('finance_dept', 'ფინანსური განყოფილება') ?>: <br>
-                        +995 551 047 535
+                        +995 551 04 75 35
                     </p>
 
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-phone me-2"></i>
                         <?= t('sales_manager', 'გაყიდვების მენეჯერი') ?>: <br>
-                        +995 551 458 454
+                        +995 551 45 84 54
                     </p>
 
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-phone me-2"></i>
                         <?= t('service_manager', 'სერვის ცენტრის მენეჯერი') ?>: <br>
-                        +995 599 100 577
+                        +995 599 10 05 77
                     </p>
 
                     <p class="text-secondary mb-2">
@@ -540,7 +626,7 @@ $blogs = $stmtB->fetchAll(PDO::FETCH_ASSOC);
                     <h5 class="fw-bold mb-4"><?= t('footer_address', 'მისამართი') ?></h5>
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-location-dot me-2"></i>
-                        <?= t('addr_1', 'ფოთი, წმ გიორგის ქ. №11') ?>
+                        <?= t('addr_1', 'ავტოპარკის მისამართი: ხობის რაიონი, პატარა ფოთი, წმ გიორგის ქ. №11') ?>
                     </p>
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-location-dot me-2"></i>

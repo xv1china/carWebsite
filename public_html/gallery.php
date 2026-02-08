@@ -41,34 +41,41 @@ function shortText($text, $len = 80) {
 
         <!-- Language -->
         <div class="dropdown">
-          <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown">
-            <?php
-              $flag = "assets/images/Flag_of_Georgia.svg.png";
-              if ($lang === "en") $flag = "assets/images/Flag_of_the_United_States.svg.webp";
-              if ($lang === "ru") $flag = "assets/images/Flag_of_Russia.svg.png";
-            ?>
-            <img src="<?= htmlspecialchars($flag) ?>" width="30" height="20" alt="">
-            <?= strtoupper($lang) ?>
-          </button>
+                    <button class="btn btn-sm btn-outline-dark d-flex align-items-center gap-1" type="button"
+                        data-bs-toggle="dropdown">
+                        <?php
+                        $flag = "assets/images/language_flag/Flag_of_Georgia.svg.png";
+                        if ($lang === "en") $flag = "assets/images/language_flag/Flag_of_the_United_States.svg.jpg";
+                        if ($lang === "ru") $flag = "assets/images/language_flag/Flag-Russia.jpg"; // თუ არ გაქვს, შეცვალე
+                        ?>
+                        <img src="<?= htmlspecialchars($flag) ?>" width="30" height="20" alt="">
+                        <?= strtoupper($lang) ?>
+                    </button>
 
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('en')) ?>">
-                <img src="assets/images/Flag_of_the_United_States.svg.webp" width="30" height="20" alt="">EN
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('ka')) ?>">
-                <img src="assets/images/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center gap-1" href="<?= htmlspecialchars(lang_url('ru')) ?>">
-                <img src="assets/images/Flag_of_Russia.svg.png" width="30" height="20" alt="">RU
-              </a>
-            </li>
-          </ul>
-        </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('ka')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_Georgia.svg.png" width="30" height="20" alt="">KA
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('en')) ?>">
+                                <img src="assets/images/language_flag/Flag_of_the_United_States.svg.jpg" width="30" height="20"
+                                    alt="">EN
+                            </a>
+                        </li>
+                        
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-1"
+                                href="<?= htmlspecialchars(lang_url('ru')) ?>">
+                                <img src="assets/images/language_flag/Flag-Russia.jpg" width="30" height="20" alt="">RU
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
         <!-- Currency -->
         <div class="dropdown">
@@ -177,46 +184,75 @@ function shortText($text, $len = 80) {
 
   <!-- Footer -->
   <footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-      <div class="row g-4">
+        <div class="container">
+            <div class="row g-4">
 
-        <div class="col-lg-4">
-          <img src="assets/images/logo.png" width="80" class="mb-3" alt="Logo">
-          <p class="text-secondary"><?= t('footer_desc','საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?></p>
-          <div class="d-flex gap-3 mt-4">
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="#" class="text-white fs-5"><i class="fa-brands fa-instagram"></i></a>
-          </div>
+                <div class="col-lg-4">
+                    <img src="assets/images/logo.png" width="80" class="mb-3" alt="Logo">
+                    <p class="text-secondary"><?= t('footer_desc', 'საიმედო და სწრაფი ლოჯისტიკური მომსახურება ევროპიდან და აზიიდან.') ?></p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="https://www.facebook.com/iakubik" class="text-white fs-5"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+                    <h5 class="fw-bold mb-4"><?= t('footer_links', 'ლინკები') ?></h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2"><a href="index.php" class="text-decoration-none text-secondary"><?= t('nav_home', 'მთავარი') ?></a></li>
+                        <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary"><?= t('nav_about', 'ჩვენს შესახებ') ?></a></li>
+                        <li class="mb-2"><a href="gallery.php" class="text-decoration-none text-secondary"><?= t('nav_gallery', 'გალერეა') ?></a></li>
+                        <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary"><?= t('nav_blog', 'ბლოგი') ?></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <h5 class="fw-bold mb-4"><?= t('footer_contact', 'კონტაქტი') ?></h5>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('finance_dept', 'ფინანსური განყოფილება') ?>: <br>
+                        +995 551 04 75 35
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('sales_manager', 'გაყიდვების მენეჯერი') ?>: <br>
+                        +995 551 45 84 54
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        <?= t('service_manager', 'სერვის ცენტრის მენეჯერი') ?>: <br>
+                        +995 599 10 05 77
+                    </p>
+
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-envelope me-2"></i>
+                        info@kkk-co.ge
+                    </p>
+                </div>
+
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-4"><?= t('footer_address', 'მისამართი') ?></h5>
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                        <?= t('addr_1', 'ფოთი, წმ გიორგის ქ. №11') ?>
+                    </p>
+                    <p class="text-secondary mb-2">
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                        <?= t('addr_2', 'ფოთი, 9 აპრილის ხეივანი №28') ?>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="mt-5 mb-4 border-secondary">
+
+            <div class="text-center text-secondary small">
+                © 2025 KKK CO. <?= t('rights', 'ყველა უფლება დაცულია.') ?>
+            </div>
         </div>
-
-        <div class="col-lg-2 col-6">
-          <h5 class="fw-bold mb-4"><?= t('footer_links','ლინკები') ?></h5>
-          <ul class="list-unstyled text-secondary">
-            <li class="mb-2"><a href="index.php" class="text-decoration-none text-secondary"><?= t('nav_home','მთავარი') ?></a></li>
-            <li class="mb-2"><a href="aboutus.php" class="text-decoration-none text-secondary"><?= t('nav_about','ჩვენს შესახებ') ?></a></li>
-            <li class="mb-2"><a href="gallery.php" class="text-decoration-none text-secondary"><?= t('nav_gallery','გალერეა') ?></a></li>
-            <li class="mb-2"><a href="blog.php" class="text-decoration-none text-secondary"><?= t('nav_blog','ბლოგი') ?></a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-6">
-          <h5 class="fw-bold mb-4"><?= t('footer_contact','კონტაქტი') ?></h5>
-          <p class="text-secondary mb-2"><i class="fa-solid fa-phone me-2"></i>+995 551 047 535</p>
-          <p class="text-secondary mb-2"><i class="fa-solid fa-envelope me-2"></i>info@kkk-co.ge</p>
-        </div>
-
-        <div class="col-lg-3">
-          <h5 class="fw-bold mb-4"><?= t('footer_address','მისამართი') ?></h5>
-          <p class="text-secondary mb-2"><i class="fa-solid fa-location-dot me-2"></i><?= t('addr_1','ფოთი, წმ გიორგის ქ. №11') ?></p>
-        </div>
-
-      </div>
-
-      <hr class="mt-5 mb-4 border-secondary">
-      <div class="text-center text-secondary small">© 2025 KKK CO. <?= t('rights','ყველა უფლება დაცულია.') ?></div>
-    </div>
-  </footer>
+    </footer>
 
   <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
     <i class="fa-solid fa-arrow-up"></i>

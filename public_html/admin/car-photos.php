@@ -21,7 +21,6 @@ $stmt = $pdo->prepare("SELECT id, image FROM car_main_images WHERE car_id = ? OR
 $stmt->execute([$carId]);
 $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!doctype html>
 <html lang="ka">
 <head>
@@ -66,7 +65,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <div class="admin-topbar__left">
         <div class="admin-topbar__badge">Car ID: <?= (int)$car["id"] ?></div>
         <div class="admin-topbar__hint">
-          <?= htmlspecialchars($car["brand"] . " " . $car["model"] . " - " . $car["year"]) ?>
+          <?= htmlspecialchars(($car["brand"] ?? "") . " " . ($car["model"] ?? "") . " - " . ($car["year"] ?? "")) ?>
         </div>
       </div>
 
@@ -82,9 +81,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
           <div>
             <h2 class="admin-h2 mb-1">📷 ფოტოები</h2>
-            <div class="admin-muted">
-              სულ: <?= (int)count($images) ?> ფოტო
-            </div>
+            <div class="admin-muted">სულ: <?= (int)count($images) ?> ფოტო</div>
           </div>
         </div>
 
@@ -93,18 +90,42 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
           <div class="row g-3">
             <?php foreach ($images as $img): ?>
-              <?php $src = "../assets/uploads/cars/" . $carId . "/" . $img["image"]; ?>
+              <?php
+                $file = $img["image"] ?? "";
+                $fileSafe = basename($file); // prevent ../ tricks
+                $src = "../assets/uploads/cars/" . (int)$carId . "/" . $fileSafe;
+
+                // Absolute path on server to validate existence
+                $absPath = dirname(__DIR__) . "/assets/uploads/cars/" . (int)$carId . "/" . $fileSafe;
+                $exists = ($fileSafe !== "" && is_file($absPath));
+              ?>
 
               <div class="col-6 col-md-4 col-lg-3">
                 <div class="admin-photo">
-                  <img class="admin-photo__img" src="<?= htmlspecialchars($src) ?>" alt="">
+                  <?php if ($exists): ?>
+                    <img
+                      class="admin-photo__img"
+                      src="<?= htmlspecialchars($src) ?>"
+                      alt="car photo"
+                      loading="lazy"
+                    >
+                  <?php else: ?>
+                    <div
+                      class="admin-photo__img d-flex align-items-center justify-content-center bg-light text-muted"
+                      style="height:180px;border-radius:12px;"
+                    >
+                      Missing file
+                    </div>
+                  <?php endif; ?>
 
                   <div class="admin-photo__footer">
                     <small class="text-muted">#<?= (int)$img["id"] ?></small>
 
-                    <a class="btn btn-sm btn-danger admin-btn-danger"
-                       href="car-photos-delete.php?car_id=<?= (int)$carId ?>&img_id=<?= (int)$img["id"] ?>"
-                       onclick="return confirm('ფოტოს წაშლა გინდა?');">
+                    <a
+                      class="btn btn-sm btn-danger admin-btn-danger"
+                      href="car-photos-delete.php?car_id=<?= (int)$carId ?>&img_id=<?= (int)$img["id"] ?>"
+                      onclick="return confirm('ფოტოს წაშლა გინდა?');"
+                    >
                       Delete
                     </a>
                   </div>

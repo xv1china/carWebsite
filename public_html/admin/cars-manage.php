@@ -2,12 +2,26 @@
 require __DIR__ . "/includes/auth.php";
 require __DIR__ . "/config/db.php";
 
-$stmt = $pdo->query("SELECT * FROM car_main ORDER BY created_at DESC");
+$stmt = $pdo->query("
+  SELECT 
+    c.*,
+    (
+      SELECT i.image
+      FROM car_main_images i
+      WHERE i.car_id = c.id
+      ORDER BY i.id ASC
+      LIMIT 1
+    ) AS main_image
+  FROM car_main c
+  ORDER BY c.created_at DESC
+");
 $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!doctype html>
 <html lang="ka">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -38,7 +52,8 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> Manage Cars</a>
 
       <div class="admin-nav__sep"></div>
-      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> Logout</a>
+      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span>
+        Logout</a>
     </nav>
   </aside>
 
@@ -65,7 +80,7 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
           <div>
             <h2 class="admin-h2 mb-1">🚗 მანქანების სია</h2>
-            <div class="admin-muted">სულ: <?= (int)count($cars) ?></div>
+            <div class="admin-muted">სულ: <?= (int) count($cars) ?></div>
           </div>
         </div>
 
@@ -88,36 +103,37 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
               </thead>
               <tbody>
-              <?php foreach ($cars as $car): ?>
-                <tr>
-                  <td class="admin-td-id">#<?= (int) $car["id"] ?></td>
-                  <td><?= htmlspecialchars($car["brand"] ?? "") ?></td>
-                  <td><?= htmlspecialchars($car["model"] ?? "") ?></td>
-                  <td><?= (int) ($car["year"] ?? 0) ?></td>
-                  <td class="fw-bold"><?= number_format((int) ($car["price"] ?? 0)) ?> ₾</td>
-                  <td><?= htmlspecialchars($car["fuel"] ?? "") ?></td>
-                  <td><?= htmlspecialchars($car["gearbox"] ?? "") ?></td>
-                  <td class="text-muted small"><?= htmlspecialchars($car["created_at"] ?? "") ?></td>
+                <?php foreach ($cars as $car): ?>
+                  <tr>
+                    <td class="admin-td-id">#<?= (int) $car["id"] ?></td>
+                    <td><?= htmlspecialchars($car["brand"] ?? "") ?></td>
+                    <td><?= htmlspecialchars($car["model"] ?? "") ?></td>
+                    <td><?= (int) ($car["year"] ?? 0) ?></td>
+                    <td class="fw-bold"><?= number_format((int) ($car["price"] ?? 0)) ?> ₾</td>
+                    <td><?= htmlspecialchars($car["fuel"] ?? "") ?></td>
+                    <td><?= htmlspecialchars($car["gearbox"] ?? "") ?></td>
+                    <td class="text-muted small"><?= htmlspecialchars($car["created_at"] ?? "") ?></td>
 
-                  <td class="text-end">
-                    <div class="d-inline-flex flex-wrap gap-2 justify-content-end">
-                      <a class="btn btn-sm btn-outline-dark admin-action" href="cars-edit.php?id=<?= (int) $car["id"] ?>">
-                        ✏️ Edit
-                      </a>
+                    <td class="text-end">
+                      <div class="d-inline-flex flex-wrap gap-2 justify-content-end">
+                        <a class="btn btn-sm btn-outline-dark admin-action" href="cars-edit.php?id=<?= (int) $car["id"] ?>">
+                          ✏️ Edit
+                        </a>
 
-                      <a class="btn btn-sm btn-outline-primary admin-action" href="car-photos.php?id=<?= (int) $car["id"] ?>">
-                        📷 Photos
-                      </a>
+                        <a class="btn btn-sm btn-outline-primary admin-action"
+                          href="car-photos.php?id=<?= (int) $car["id"] ?>">
+                          📷 Photos
+                        </a>
 
-                      <a class="btn btn-sm btn-outline-danger admin-action"
-                         href="cars-delete.php?id=<?= (int) $car["id"] ?>"
-                         onclick="return confirm('წაშლა გინდა მართლა?');">
-                        🗑 Delete
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
+                        <a class="btn btn-sm btn-outline-danger admin-action"
+                          href="cars-delete.php?id=<?= (int) $car["id"] ?>"
+                          onclick="return confirm('წაშლა გინდა მართლა?');">
+                          🗑 Delete
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>
@@ -129,4 +145,5 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
