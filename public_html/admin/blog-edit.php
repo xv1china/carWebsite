@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $content = trim($_POST["content"] ?? "");
 
     if ($title === "" || $content === "") {
-        $error = "Title და Content სავალდებულოა";
+        $error = "სათაური და შინაარსი სავალდებულოა.";
     } else {
         // 1) ტექსტების update
         $upd = $pdo->prepare("
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Edit Blog</title>
+    <title>ბლოგის რედაქტირება</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -95,10 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <div class="admin-h2 mb-1">✏️ Blog Edit</div>
+                    <div class="admin-h2 mb-1">✏️ ბლოგის რედაქტირება</div>
                     <div class="admin-muted">ID: #<?= (int)$post["id"] ?></div>
                 </div>
-                <a class="btn btn-outline-secondary admin-btn-soft" href="blog-manage.php">Back</a>
+                <a class="btn btn-outline-secondary admin-btn-soft" href="blog-manage.php">უკან</a>
             </div>
 
             <?php if ($success): ?>
@@ -112,36 +112,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <form method="post" enctype="multipart/form-data" class="row g-3">
 
                 <div class="col-12">
-                    <label class="form-label">Title *</label>
+                    <label class="form-label">სათაური *</label>
                     <input name="title" class="form-control" value="<?= htmlspecialchars($post["title"]) ?>" required>
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label">Content *</label>
+                    <label class="form-label">შინაარსი *</label>
                     <textarea name="content" rows="10" class="form-control"
                         required><?= htmlspecialchars($post["content"]) ?></textarea>
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label">Current Image</label><br>
+                    <label class="form-label">მიმდინარე სურათი</label><br>
 
                     <?php if (!empty($post["image"])): ?>
                         <img src="../assets/uploads/blog/<?= (int)$post["id"] ?>/<?= htmlspecialchars($post["image"]) ?>"
                             style="width:180px;height:110px;object-fit:cover;border-radius:12px;">
                     <?php else: ?>
-                        <span class="admin-badge admin-badge--muted">No image</span>
+                        <span class="admin-badge admin-badge--muted">სურათი არ არის</span>
                     <?php endif; ?>
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label">Change Image</label>
+                    <label class="form-label">სურათის შეცვლა</label>
                     <input type="file" name="image" class="form-control" accept="image/*">
                     <div class="form-text">jpg / png / webp</div>
                 </div>
 
                 <div class="col-12 d-flex gap-2">
-                    <button class="btn btn-warning admin-btn">Update</button>
-                    <a href="blog-manage.php" class="btn btn-outline-secondary admin-btn-soft">Cancel</a>
+                    <button class="btn btn-warning admin-btn">განახლება</button>
+                    <a href="blog-manage.php" class="btn btn-outline-secondary admin-btn-soft">გაუქმება</a>
                 </div>
 
             </form>

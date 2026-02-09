@@ -13,13 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
   if (!$admin || empty($admin["password"])) {
-    $error = "არასწორი username ან password";
+    $error = "არასწორი მომხმარებელი ან პაროლი";
   } elseif (password_verify($password, $admin["password"])) {
     $_SESSION["admin_id"] = (int)$admin["id"];
     header("Location: dashboard.php");
     exit;
   } else {
-    $error = "არასწორი username ან password";
+    $error = "არასწორი მომხმარებელი ან პაროლი";
   }
 }
 ?>
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Login</title>
+  <title>ადმინის შესვლა</title>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form method="post" class="admin-form">
 
       <div class="mb-3">
-        <label class="form-label">Username</label>
+        <label class="form-label">მომხმარებელი</label>
         <input
           type="text"
           name="username"
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">პაროლი</label>
         <input
           type="password"
           name="password"
@@ -117,13 +117,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       </div>
 
       <button class="btn btn-primary admin-btn w-100">
-        Login
+        შესვლა
       </button>
 
     </form>
 
     <div class="text-center mt-4 admin-muted">
-      © <?= date("Y") ?> Admin Panel
+      © <?= date("Y") ?> ადმინ პანელი
     </div>
 
   </div>

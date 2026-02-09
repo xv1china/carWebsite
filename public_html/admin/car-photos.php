@@ -26,7 +26,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Car Photos</title>
+  <title>მანქანის ფოტოები</title>
 
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -42,18 +42,18 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="admin-sidebar__brand">
       <div class="admin-sidebar__logo">A</div>
       <div>
-        <div class="admin-sidebar__title">Admin Panel</div>
-        <div class="admin-sidebar__subtitle">Cars</div>
+        <div class="admin-sidebar__title">ადმინ პანელი</div>
+        <div class="admin-sidebar__subtitle">მანქანები</div>
       </div>
     </div>
 
     <nav class="admin-nav">
-      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> Dashboard</a>
-      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> Add Car</a>
-      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> Manage Cars</a>
+      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> მთავარი</a>
+      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> მანქანის დამატება</a>
+      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> მანქანების მართვა</a>
 
       <div class="admin-nav__sep"></div>
-      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> Logout</a>
+      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> გასვლა</a>
     </nav>
   </aside>
 
@@ -63,15 +63,15 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Topbar -->
     <header class="admin-topbar">
       <div class="admin-topbar__left">
-        <div class="admin-topbar__badge">Car ID: <?= (int)$car["id"] ?></div>
+        <div class="admin-topbar__badge">მანქანის ID: <?= (int)$car["id"] ?></div>
         <div class="admin-topbar__hint">
           <?= htmlspecialchars(($car["brand"] ?? "") . " " . ($car["model"] ?? "") . " - " . ($car["year"] ?? "")) ?>
         </div>
       </div>
 
       <div class="admin-topbar__right d-flex gap-2">
-        <a class="btn btn-outline-secondary admin-btn-soft" href="cars-manage.php">Back</a>
-        <a class="btn btn-primary admin-btn" href="car-photos-add.php?id=<?= (int)$carId ?>">Add Photos</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="cars-manage.php">უკან</a>
+        <a class="btn btn-primary admin-btn" href="car-photos-add.php?id=<?= (int)$carId ?>">ფოტოების დამატება</a>
       </div>
     </header>
 
@@ -106,7 +106,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <img
                       class="admin-photo__img"
                       src="<?= htmlspecialchars($src) ?>"
-                      alt="car photo"
+                      alt="მანქანის ფოტო"
                       loading="lazy"
                     >
                   <?php else: ?>
@@ -114,7 +114,7 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                       class="admin-photo__img d-flex align-items-center justify-content-center bg-light text-muted"
                       style="height:180px;border-radius:12px;"
                     >
-                      Missing file
+                      ფაილი ვერ მოიძებნა
                     </div>
                   <?php endif; ?>
 
@@ -124,9 +124,9 @@ $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a
                       class="btn btn-sm btn-danger admin-btn-danger"
                       href="car-photos-delete.php?car_id=<?= (int)$carId ?>&img_id=<?= (int)$img["id"] ?>"
-                      onclick="return confirm('ფოტოს წაშლა გინდა?');"
+                      onclick="return confirm('ნამდვილად გინდა ფოტოს წაშლა?');"
                     >
-                      Delete
+                      წაშლა
                     </a>
                   </div>
                 </div>

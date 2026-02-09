@@ -10,7 +10,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gallery Manage</title>
+  <title>გალერეის მართვა</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -20,12 +20,12 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="admin-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div>
-        <div class="admin-h2 mb-1">📷 Gallery Manage</div>
+        <div class="admin-h2 mb-1">📷 გალერეის მართვა</div>
         <div class="admin-muted">ყველა ელემენტი</div>
       </div>
       <div class="d-flex gap-2">
-        <a class="btn btn-primary admin-btn" href="gallery-add.php">+ Add</a>
-        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Back</a>
+        <a class="btn btn-primary admin-btn" href="gallery-add.php">+ დამატება</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">უკან</a>
       </div>
     </div>
 
@@ -38,7 +38,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>სათაური</th>
             <th>სტატუსი</th>
             <th>თარიღი</th>
-            <th class="text-end">Actions</th>
+            <th class="text-end">ქმედებები</th>
           </tr>
         </thead>
         <tbody>
@@ -54,7 +54,7 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php if ($img): ?>
                   <img src="<?= htmlspecialchars($img) ?>" style="width:70px;height:44px;object-fit:cover;border-radius:10px;">
                 <?php else: ?>
-                  <span class="admin-badge admin-badge--muted">No image</span>
+                  <span class="admin-badge admin-badge--muted">სურათი არ არის</span>
                 <?php endif; ?>
               </td>
               <td><?= htmlspecialchars($item["title"] ?? "-") ?></td>
@@ -65,8 +65,8 @@ $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </td>
               <td class="text-muted"><?= htmlspecialchars($item["created_at"] ?? "") ?></td>
               <td class="text-end d-flex justify-content-end gap-2">
-                <a class="btn btn-sm btn-outline-warning admin-action" href="gallery-edit.php?id=<?= (int) $item["id"] ?>">Edit</a>
-                <a class="btn btn-sm btn-outline-danger admin-action" href="gallery-delete.php?id=<?= (int) $item["id"] ?>" onclick="return confirm('წაშლა გინდა?');">Delete</a>
+                <a class="btn btn-sm btn-outline-warning admin-action" href="gallery-edit.php?id=<?= (int) $item["id"] ?>">რედაქტირება</a>
+                <a class="btn btn-sm btn-outline-danger admin-action" href="gallery-delete.php?id=<?= (int) $item["id"] ?>" onclick="return confirm('ნამდვილად გინდა წაშლა?');">წაშლა</a>
               </td>
             </tr>
           <?php endforeach; ?>

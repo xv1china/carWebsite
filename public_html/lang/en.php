@@ -7,6 +7,11 @@ return [
   'nav_blog' => 'Blog',
   'nav_contact' => 'Contact',
 
+  // Common UI
+  'more' => 'More',
+  'less' => 'Less',
+  'view_all' => 'View all',
+
   // Slider
   'slider_1_title' => 'Heavy equipment',
   'slider_1_text' => 'Reliable trucks for construction, transport and logistics.',
@@ -18,7 +23,9 @@ return [
   // Section titles / labels
   'shipping' => 'Shipping',
   'blog' => 'Blog',
-  'best_service' => 'We offer the best service',
+
+  // ✅ This is used in index.php as “გასაყიდი ტექნიკა”
+  'best_service' => 'Equipment for sale',
 
   // Shipping cards
   'ship_land_title' => 'Land',
@@ -50,16 +57,12 @@ return [
 
   'srv_1_t' => 'Land transportation',
   'srv_1_p' => 'Cargo transportation towards Europe and Asia.',
-
   'srv_2_t' => 'Sea transportation',
   'srv_2_p' => 'Container shipping and sea freight transportation.',
-
   'srv_3_t' => 'Customs & brokerage services',
   'srv_3_p' => 'Documentation and full support of customs procedures.',
-
   'srv_4_t' => 'Container transportation',
   'srv_4_p' => 'Safe and efficient container logistics.',
-
   'srv_5_t' => 'Dangerous goods',
   'srv_5_p' => 'Transportation of dangerous goods in compliance with ADR standards.',
 
@@ -71,10 +74,11 @@ return [
   'finance_dept' => 'Finance department',
   'sales_manager' => 'Sales manager',
   'service_manager' => 'Service center manager',
-  'addr_1' => 'Poti, St. George St. No. 11',
+  'addr_1' => 'Fleet address: Khobi district, Patara Poti, St. George St. No. 11',
   'addr_2' => 'Poti, April 9 Alley No. 28',
   'rights' => 'All rights reserved.',
 
+  // Pages (you already had these)
   'blog_page_title' => 'Blog - KKK & Company | Blog',
   'blog_meta_desc' => 'News and articles about trucks, logistics and shipping',
   'blog_h1' => 'Blog',
@@ -85,56 +89,57 @@ return [
   'not_found' => 'No results found.',
 
   'contact_page_title' => 'Contact - KKK & Company | Contact',
-'contact_meta_desc' => 'Contact KKK & Company. Truck sales, shipping and logistics services.',
+  'contact_meta_desc' => 'Contact KKK & Company. Truck sales, shipping and logistics services.',
 
-'contact_h1' => 'Contact us',
-'contact_sub' => 'We are ready to answer all your questions',
+  'contact_h1' => 'Contact us',
+  'contact_sub' => 'We are ready to answer all your questions',
 
-'contact_info_title' => 'Contact information',
-'contact_phones' => 'Phones',
-'contact_email' => 'Email',
-'contact_addresses' => 'Addresses',
-'contact_social' => 'Follow us on social media',
+  'contact_info_title' => 'Contact information',
+  'contact_phones' => 'Phones',
+  'contact_email' => 'Email',
+  'contact_addresses' => 'Addresses',
+  'contact_social' => 'Follow us on social media',
 
-'contact_form_title' => 'Send us a message',
+  'contact_form_title' => 'Send us a message',
 
-'f_name' => 'Name',
-'ph_name' => 'Your name',
-'err_name' => 'Please enter your name',
+  'f_name' => 'Name',
+  'ph_name' => 'Your name',
+  'err_name' => 'Please enter your name',
 
-'f_email' => 'Email',
-'err_email' => 'Please enter a valid email',
+  'f_email' => 'Email',
+  'err_email' => 'Please enter a valid email',
 
-'f_phone' => 'Phone',
+  'f_phone' => 'Phone',
 
-'f_subject' => 'Subject',
-'subject_choose' => 'Choose a subject',
-'subject_truck' => 'Buying a truck',
-'subject_shipping' => 'Shipping request',
-'subject_customs' => 'Customs service',
-'subject_consult' => 'Consultation',
-'subject_other' => 'Other',
-'err_subject' => 'Please choose a subject',
+  'f_subject' => 'Subject',
+  'subject_choose' => 'Choose a subject',
+  'subject_truck' => 'Buying a truck',
+  'subject_shipping' => 'Shipping request',
+  'subject_customs' => 'Customs service',
+  'subject_consult' => 'Consultation',
+  'subject_other' => 'Other',
+  'err_subject' => 'Please choose a subject',
 
-'f_message' => 'Message',
-'ph_message' => 'Write in detail...',
-'err_message' => 'Please enter a message',
+  'f_message' => 'Message',
+  'ph_message' => 'Write in detail...',
+  'err_message' => 'Please enter a message',
 
-'privacy_agree' => 'I agree to the',
-'privacy_policy' => 'Privacy Policy',
-'err_privacy' => 'Please agree to the policy',
+  'privacy_agree' => 'I agree to the',
+  'privacy_policy' => 'Privacy Policy',
+  'err_privacy' => 'Please agree to the policy',
 
-'send_btn' => 'Send message',
-'send_success' => 'Your message has been sent successfully! We will contact you soon.',
+  'send_btn' => 'Send message',
+  'send_success' => 'Your message has been sent successfully! We will contact you soon.',
 
-'gallery_page_title' => 'Photo Gallery - KKK & Company | Gallery',
-'gallery_meta_desc'  => 'Photo gallery of our fleet, office and projects - KKK & Company',
-'gallery_h1'         => 'Photo Gallery',
-'gallery_sub'        => 'Our fleet, office and projects',
-'gallery_empty'      => 'The gallery is empty.',
+  'gallery_page_title' => 'Photo Gallery - KKK & Company | Gallery',
+  'gallery_meta_desc'  => 'Photo gallery of our fleet, office and projects - KKK & Company',
+  'gallery_h1'         => 'Photo Gallery',
+  'gallery_sub'        => 'Our fleet, office and projects',
+  'gallery_empty'      => 'The gallery is empty.',
 
-'skip_to_main' => 'Skip to main content',
+  'skip_to_main' => 'Skip to main content',
 
+  // About page (you already had these)
   'about_page_title' => 'LLC "KKK & Company" — Transport & Freight Forwarding Services | Georgia',
   'about_meta_desc'  => 'KKK & Company — reliable truck transportation, international logistics and customs services in Georgia. 20+ trailer fleet, 24/7 dispatch, GPS tracking.',
 
@@ -202,5 +207,5 @@ return [
   'about_faq_q4' => 'How can I get express/urgent service?',
   'about_faq_a4' => 'For express service, please call our dispatch center directly: +995 689 09 09 09. For urgent shipments we have a special express fleet ready within 2–4 hours. Express service is available 24/7, including weekends and holidays.',
   'about_faq_q5' => 'What type of insurance do you offer for cargo?',
-   'about_faq_a5' => 'We offer three levels of insurance: 1) <strong>Basic</strong> – standard risks (damage, theft) 2) <strong>Extended</strong> – natural disasters, political risks 3) <strong>Full</strong> – all risks. The cost depends on cargo value, route and coverage level.',
+  'about_faq_a5' => 'We offer three levels of insurance: 1) <strong>Basic</strong> – standard risks (damage, theft) 2) <strong>Extended</strong> – natural disasters, political risks 3) <strong>Full</strong> – all risks. The cost depends on cargo value, route and coverage level.',
 ];

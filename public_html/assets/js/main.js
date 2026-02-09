@@ -1,135 +1,170 @@
 // Scroll to Top Button
-(function() {
-    'use strict';
-    
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    
-    if (scrollToTopBtn) {
-        // Show/hide button on scroll
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
-        
-        // Smooth scroll to top
-        scrollToTopBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href !== '#' && href.length > 1) {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
+(function () {
+  "use strict";
+
+  const scrollToTopBtn = document.getElementById("scrollToTop");
+
+  if (scrollToTopBtn) {
+    // Show/hide button on scroll
+    window.addEventListener("scroll", function () {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add("show");
+      } else {
+        scrollToTopBtn.classList.remove("show");
+      }
     });
-    
-    // Contact form on homepage
-    const homeContactForm = document.getElementById('homeContactForm');
-    if (homeContactForm) {
-        homeContactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            if (!this.checkValidity()) {
-                this.classList.add('was-validated');
-                return;
-            }
-            
-            // Here you would normally send the form data to a server
-            const alertDiv = document.getElementById('homeFormAlert');
-            if (alertDiv) {
-                alertDiv.className = 'alert alert-success';
-                alertDiv.textContent = 'თქვენი შეტყობინება წარმატებით გაიგზავნა! ჩვენ დაგიკავშირდებით მალე.';
-                alertDiv.classList.remove('d-none');
-                this.reset();
-                this.classList.remove('was-validated');
-                
-                // Scroll to alert
-                alertDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        }, false);
-    }
-    
-    // Add loading state to images
-    document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('load', function() {
-            this.style.opacity = '1';
-        });
-        img.style.transition = 'opacity 0.3s';
-        if (img.complete) {
-            img.style.opacity = '1';
-        } else {
-            img.style.opacity = '0';
+
+    // Smooth scroll to top
+    scrollToTopBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (href !== "#" && href.length > 1) {
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
         }
+      }
     });
-    
-    // Scroll animations using Intersection Observer
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Unobserve after animation to improve performance
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements with animation classes
-    document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+  });
+
+  // Contact form on homepage
+  const homeContactForm = document.getElementById("homeContactForm");
+  if (homeContactForm) {
+    homeContactForm.addEventListener(
+      "submit",
+      function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!this.checkValidity()) {
+          this.classList.add("was-validated");
+          return;
+        }
+
+        // Here you would normally send the form data to a server
+        const alertDiv = document.getElementById("homeFormAlert");
+        if (alertDiv) {
+          alertDiv.className = "alert alert-success";
+          alertDiv.textContent =
+            "თქვენი შეტყობინება წარმატებით გაიგზავნა! ჩვენ დაგიკავშირდებით მალე.";
+          alertDiv.classList.remove("d-none");
+          this.reset();
+          this.classList.remove("was-validated");
+
+          // Scroll to alert
+          alertDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      },
+      false,
+    );
+  }
+
+  // Add loading state to images
+  document.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("load", function () {
+      this.style.opacity = "1";
+    });
+    img.style.transition = "opacity 0.3s";
+    if (img.complete) {
+      img.style.opacity = "1";
+    } else {
+      img.style.opacity = "0";
+    }
+  });
+
+  // Scroll animations using Intersection Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        // Unobserve after animation to improve performance
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe elements with animation classes
+  document
+    .querySelectorAll(".fade-in, .fade-in-left, .fade-in-right, .scale-in")
+    .forEach((el) => {
+      observer.observe(el);
+    });
+
+  // Auto-add fade-in class to common elements if not already present
+  const autoAnimateSelectors = [
+    ".card",
+    ".service-card",
+    ".blog-card",
+    ".gallery-item",
+    ".testimonial-card",
+    "section > .container > h2",
+    "section > .container > .row > .col",
+  ];
+
+  autoAnimateSelectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((el, index) => {
+      // Only add if element doesn't already have an animation class
+      if (
+        !el.classList.contains("fade-in") &&
+        !el.classList.contains("fade-in-left") &&
+        !el.classList.contains("fade-in-right") &&
+        !el.classList.contains("scale-in")
+      ) {
+        el.classList.add("fade-in");
+        // Add staggered delay for cards in rows
+        if (index % 4 < 4) {
+          el.classList.add(`fade-in-delay-${(index % 4) + 1}`);
+        }
         observer.observe(el);
+      }
     });
-    
-    // Auto-add fade-in class to common elements if not already present
-    const autoAnimateSelectors = [
-        '.card',
-        '.service-card',
-        '.blog-card',
-        '.gallery-item',
-        '.testimonial-card',
-        'section > .container > h2',
-        'section > .container > .row > .col'
-    ];
-    
-    autoAnimateSelectors.forEach(selector => {
-        document.querySelectorAll(selector).forEach((el, index) => {
-            // Only add if element doesn't already have an animation class
-            if (!el.classList.contains('fade-in') && 
-                !el.classList.contains('fade-in-left') && 
-                !el.classList.contains('fade-in-right') && 
-                !el.classList.contains('scale-in')) {
-                el.classList.add('fade-in');
-                // Add staggered delay for cards in rows
-                if (index % 4 < 4) {
-                    el.classList.add(`fade-in-delay-${(index % 4) + 1}`);
-                }
-                observer.observe(el);
-            }
-        });
-    });
+  });
 })();
+
+function getLang() {
+  // html lang="ka" / "en" / "ru"
+  const l = (document.documentElement.lang || "ka").toLowerCase();
+  // თუ გაქვს ka-GE ან en-US, დავჭრათ
+  return l.split("-")[0];
+}
+
+function getLabels(lang) {
+  const labels = {
+    ka: { more: "მეტი", less: "ნაკლები" },
+    en: { more: "More", less: "Less" },
+    ru: { more: "Подробнее", less: "Скрыть" },
+  };
+  return labels[lang] || labels.ka;
+}
+
+function setSeeMoreButton(btnId, isOpen) {
+  const btn = document.getElementById(btnId);
+  if (!btn) return;
+
+  const lang = getLang();
+  const { more, less } = getLabels(lang);
+
+  btn.textContent = isOpen ? less : `… ${more}`;
+}
 
 function toggleText(textId, btnId) {
   const text = document.getElementById(textId);
@@ -139,14 +174,20 @@ function toggleText(textId, btnId) {
   const isClamped = text.classList.contains("clamp-4");
 
   if (isClamped) {
-    // გახსნა
+    // open
     text.classList.remove("clamp-4");
-    btn.innerText = "ნაკლები";
     btn.classList.remove("seeMore--faded");
+    setSeeMoreButton(btnId, true);
   } else {
-    // დახურვა
+    // close
     text.classList.add("clamp-4");
-    btn.innerText = "… მეტი";
     btn.classList.add("seeMore--faded");
+    setSeeMoreButton(btnId, false);
   }
 }
+
+// ✅ გვერდის ჩატვირთვისას სწორ ენაზე ავტომატურად დააყენოს საწყისი ტექსტები
+document.addEventListener("DOMContentLoaded", () => {
+  setSeeMoreButton("seeMore1", false);
+  setSeeMoreButton("seeMore2", false);
+});

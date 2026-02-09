@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $status = ($_POST["status"] ?? "available") === "sold" ? "sold" : "available";
 
     if ($brand === "" || $model === "" || $year <= 0 || $price <= 0 || $fuel === "" || $gearbox === "") {
-        $error = "გთხოვ შეავსე აუცილებელი ველები (Brand, Model, Year, Price, Fuel, Gearbox).";
+        $error = "გთხოვ შეავსე აუცილებელი ველები (ბრენდი, მოდელი, წელი, ფასი, საწვავი, გადაცემათა კოლოფი).";
     } else {
         // ✅ translate pack (KA->EN/RU)
         [$title_ka, $title_en, $title_ru] = translate_pack_ka($title);
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Add Car</title>
+  <title>მანქანის დამატება</title>
 
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -109,18 +109,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="admin-sidebar__brand">
       <div class="admin-sidebar__logo">A</div>
       <div>
-        <div class="admin-sidebar__title">Admin Panel</div>
-        <div class="admin-sidebar__subtitle">Cars</div>
+        <div class="admin-sidebar__title">ადმინ პანელი</div>
+        <div class="admin-sidebar__subtitle">მანქანები</div>
       </div>
     </div>
 
     <nav class="admin-nav">
-      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> Dashboard</a>
-      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> Add Car</a>
-      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> Manage Cars</a>
+      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> მთავარი</a>
+      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> მანქანის დამატება</a>
+      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> მანქანების მართვა</a>
 
       <div class="admin-nav__sep"></div>
-      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> Logout</a>
+      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> გასვლა</a>
     </nav>
   </aside>
 
@@ -130,13 +130,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Topbar -->
     <header class="admin-topbar">
       <div class="admin-topbar__left">
-        <div class="admin-topbar__badge">Cars</div>
+        <div class="admin-topbar__badge">მანქანები</div>
         <div class="admin-topbar__hint">➕ მანქანის დამატება</div>
       </div>
 
       <div class="admin-topbar__right d-flex gap-2">
-        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Back</a>
-        <a class="btn btn-outline-dark admin-btn-soft" href="cars-manage.php">Manage</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">უკან</a>
+        <a class="btn btn-outline-dark admin-btn-soft" href="cars-manage.php">მართვა</a>
       </div>
     </header>
 
@@ -162,32 +162,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <form method="post" enctype="multipart/form-data" class="row g-3 admin-form">
 
           <div class="col-md-6">
-            <label class="form-label">სათაური (optional)</label>
+            <label class="form-label">სათაური (არასავალდებულო)</label>
             <input name="title" class="form-control" placeholder="მაგ: Volvo FH16 2022">
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Brand *</label>
+            <label class="form-label">ბრენდი *</label>
             <input name="brand" class="form-control" required placeholder="Volvo">
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Model *</label>
+            <label class="form-label">მოდელი *</label>
             <input name="model" class="form-control" required placeholder="FH16">
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Year *</label>
+            <label class="form-label">წელი *</label>
             <input name="year" type="number" class="form-control" required placeholder="2022">
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Price (₾) *</label>
+            <label class="form-label">ფასი (₾) *</label>
             <input name="price" type="number" class="form-control" required placeholder="85000">
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Fuel *</label>
+            <label class="form-label">საწვავი *</label>
             <select name="fuel" class="form-select" required>
               <option value="">აირჩიე</option>
               <option>დიზელი</option>
@@ -198,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Gearbox *</label>
+            <label class="form-label">გადაცემათა კოლოფი *</label>
             <select name="gearbox" class="form-select" required>
               <option value="">აირჩიე</option>
               <option>ავტომატიკა</option>
@@ -207,12 +207,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Mileage (კმ)</label>
+            <label class="form-label">გარბენი (კმ)</label>
             <input name="mileage" type="number" class="form-control" placeholder="120000">
           </div>
 
           <div class="col-12">
-            <label class="form-label">Description</label>
+            <label class="form-label">აღწერა</label>
             <textarea name="description" rows="4" class="form-control" placeholder="აღწერა..."></textarea>
           </div>
 
@@ -223,7 +223,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           </div>
 
           <div class="col-md-3">
-            <label class="form-label">Status *</label>
+            <label class="form-label">სტატუსი *</label>
             <select name="status" class="form-select" required>
               <option value="available" selected>გასაყიდი</option>
               <option value="sold">გაყიდულია</option>
@@ -231,9 +231,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           </div>
 
           <div class="col-12 d-flex flex-wrap gap-2 mt-2">
-            <button class="btn btn-primary admin-btn" type="submit">Save</button>
-            <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Back</a>
-            <a class="btn btn-outline-dark admin-btn-soft" href="cars-manage.php">Manage</a>
+            <button class="btn btn-primary admin-btn" type="submit">შენახვა</button>
+            <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">უკან</a>
+            <a class="btn btn-outline-dark admin-btn-soft" href="cars-manage.php">მართვა</a>
           </div>
 
         </form>

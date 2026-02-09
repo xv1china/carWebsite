@@ -25,7 +25,7 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Manage Cars</title>
+  <title>მანქანების მართვა</title>
 
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -41,19 +41,19 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="admin-sidebar__brand">
       <div class="admin-sidebar__logo">A</div>
       <div>
-        <div class="admin-sidebar__title">Admin Panel</div>
-        <div class="admin-sidebar__subtitle">Cars</div>
+        <div class="admin-sidebar__title">ადმინ პანელი</div>
+        <div class="admin-sidebar__subtitle">მანქანები</div>
       </div>
     </div>
 
     <nav class="admin-nav">
-      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> Dashboard</a>
-      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> Add Car</a>
-      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> Manage Cars</a>
+      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> მთავარი</a>
+      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> მანქანის დამატება</a>
+      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> მანქანების მართვა</a>
 
       <div class="admin-nav__sep"></div>
       <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span>
-        Logout</a>
+        გასვლა</a>
     </nav>
   </aside>
 
@@ -63,13 +63,13 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Topbar -->
     <header class="admin-topbar">
       <div class="admin-topbar__left">
-        <div class="admin-topbar__badge">Cars</div>
+        <div class="admin-topbar__badge">მანქანები</div>
         <div class="admin-topbar__hint">🚗 მანქანების მართვა</div>
       </div>
 
       <div class="admin-topbar__right d-flex gap-2">
-        <a class="btn btn-primary admin-btn" href="cars-add.php">+ Add Car</a>
-        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Dashboard</a>
+        <a class="btn btn-primary admin-btn" href="cars-add.php">+ მანქანის დამატება</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">მთავარი</a>
       </div>
     </header>
 
@@ -92,14 +92,14 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Brand</th>
-                  <th>Model</th>
-                  <th>Year</th>
-                  <th>Price</th>
-                  <th>Fuel</th>
-                  <th>Gearbox</th>
-                  <th>Created</th>
-                  <th class="text-end">Actions</th>
+                  <th>ბრენდი</th>
+                  <th>მოდელი</th>
+                  <th>წელი</th>
+                  <th>ფასი</th>
+                  <th>საწვავი</th>
+                  <th>გადაცემათა კოლოფი</th>
+                  <th>დამატების თარიღი</th>
+                  <th class="text-end">ქმედებები</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,18 +117,18 @@ $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td class="text-end">
                       <div class="d-inline-flex flex-wrap gap-2 justify-content-end">
                         <a class="btn btn-sm btn-outline-dark admin-action" href="cars-edit.php?id=<?= (int) $car["id"] ?>">
-                          ✏️ Edit
+                          ✏️ რედაქტირება
                         </a>
 
                         <a class="btn btn-sm btn-outline-primary admin-action"
                           href="car-photos.php?id=<?= (int) $car["id"] ?>">
-                          📷 Photos
+                          📷 ფოტოები
                         </a>
 
                         <a class="btn btn-sm btn-outline-danger admin-action"
                           href="cars-delete.php?id=<?= (int) $car["id"] ?>"
-                          onclick="return confirm('წაშლა გინდა მართლა?');">
-                          🗑 Delete
+                          onclick="return confirm('ნამდვილად გინდა წაშლა?');">
+                          🗑 წაშლა
                         </a>
                       </div>
                     </td>

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $content = trim($_POST["content"] ?? "");
 
   if ($title === "" || $content === "") {
-    $error = "Title და Content აუცილებელია.";
+    $error = "სათაური და შინაარსი აუცილებელია.";
   } else {
 
     // ✅ translate pack
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Blog Add</title>
+  <title>ბლოგის დამატება</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -84,11 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div>
         <div class="admin-h2 mb-1">📝 ბლოგის დამატება</div>
-        <div class="admin-muted">Title + Content + Image</div>
+        <div class="admin-muted">სათაური + შინაარსი + სურათი</div>
       </div>
       <div class="d-flex gap-2">
-        <a class="btn btn-outline-primary admin-btn-soft" href="blog-manage.php">Manage</a>
-        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Back</a>
+        <a class="btn btn-outline-primary admin-btn-soft" href="blog-manage.php">მართვა</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">უკან</a>
       </div>
     </div>
 
@@ -101,22 +101,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <form method="post" enctype="multipart/form-data" class="admin-form">
       <div class="mb-3">
-        <label class="form-label">Title *</label>
+        <label class="form-label">სათაური *</label>
         <input name="title" class="form-control" required value="<?= htmlspecialchars($_POST["title"] ?? "") ?>">
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Content *</label>
+        <label class="form-label">შინაარსი *</label>
         <textarea name="content" class="form-control" rows="8" required><?= htmlspecialchars($_POST["content"] ?? "") ?></textarea>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Image (optional)</label>
+        <label class="form-label">სურათი (არასავალდებულო)</label>
         <input type="file" name="image" class="form-control" accept="image/*">
-        <div class="admin-help mt-1">jpg/png/webp, max 6MB</div>
+        <div class="admin-help mt-1">jpg/png/webp, მაქს. 6MB</div>
       </div>
 
-      <button class="btn btn-primary admin-btn">Save</button>
+      <button class="btn btn-primary admin-btn">შენახვა</button>
     </form>
   </div>
 </div>

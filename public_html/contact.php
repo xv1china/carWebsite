@@ -310,7 +310,7 @@ require __DIR__ . "/includes/lang.php";
                     <h5 class="fw-bold mb-4"><?= t('footer_address', 'მისამართი') ?></h5>
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-location-dot me-2"></i>
-                        <?= t('addr_1', 'ფოთი, წმ გიორგის ქ. №11') ?>
+                        <?= t('addr_1', 'პატარა ფოთი, წმ გიორგის ქ. №11') ?>
                     </p>
                     <p class="text-secondary mb-2">
                         <i class="fa-solid fa-location-dot me-2"></i>

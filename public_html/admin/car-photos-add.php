@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Add Photos</title>
+  <title>ფოტოების დამატება</title>
 
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -81,18 +81,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="admin-sidebar__brand">
       <div class="admin-sidebar__logo">A</div>
       <div>
-        <div class="admin-sidebar__title">Admin Panel</div>
-        <div class="admin-sidebar__subtitle">Cars</div>
+        <div class="admin-sidebar__title">ადმინ პანელი</div>
+        <div class="admin-sidebar__subtitle">მანქანები</div>
       </div>
     </div>
 
     <nav class="admin-nav">
-      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> Dashboard</a>
-      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> Add Car</a>
-      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> Manage Cars</a>
+      <a class="admin-nav__link" href="dashboard.php"><span class="admin-nav__icon">🏠</span> მთავარი</a>
+      <a class="admin-nav__link" href="cars-add.php"><span class="admin-nav__icon">➕</span> მანქანის დამატება</a>
+      <a class="admin-nav__link" href="cars-manage.php"><span class="admin-nav__icon">🚗</span> მანქანების მართვა</a>
 
       <div class="admin-nav__sep"></div>
-      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> Logout</a>
+      <a class="admin-nav__link admin-nav__link--danger" href="logout.php"><span class="admin-nav__icon">⎋</span> გასვლა</a>
     </nav>
   </aside>
 
@@ -101,19 +101,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Topbar -->
     <header class="admin-topbar">
       <div class="admin-topbar__left">
-        <div class="admin-topbar__badge">Car ID: <?= (int)$carId ?></div>
+        <div class="admin-topbar__badge">მანქანის ID: <?= (int)$carId ?></div>
         <div class="admin-topbar__hint">ფოტოების დამატება</div>
       </div>
 
       <div class="admin-topbar__right d-flex gap-2">
-        <a class="btn btn-outline-secondary admin-btn-soft" href="car-photos.php?id=<?= (int)$carId ?>">Back</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="car-photos.php?id=<?= (int)$carId ?>">უკან</a>
       </div>
     </header>
 
     <!-- Content -->
     <main class="admin-content">
       <div class="admin-card">
-        <h2 class="admin-h2 mb-1">➕ Add Photos</h2>
+        <h2 class="admin-h2 mb-1">➕ ფოტოების დამატება</h2>
         <div class="admin-muted mb-3">jpg/png/webp • მაქს. 6MB თითო ფოტო</div>
 
         <?php if ($success): ?>
@@ -124,14 +124,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php endif; ?>
 
         <form method="post" enctype="multipart/form-data" class="admin-form">
-          <label class="form-label">ფოტოები (multiple)</label>
+          <label class="form-label">ფოტოები (რამდენიმე ერთად)</label>
           <input type="file" name="images[]" class="form-control" accept="image/*" multiple required>
 
           <div class="admin-help mt-2 mb-3">
             რჩევა: მონიშნე ერთდროულად რამდენიმე ფოტო (Ctrl/Command).
           </div>
 
-          <button class="btn btn-primary admin-btn">Upload</button>
+          <button class="btn btn-primary admin-btn">ატვირთვა</button>
         </form>
       </div>
     </main>

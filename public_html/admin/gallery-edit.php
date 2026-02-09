@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gallery Edit</title>
+  <title>გალერეის რედაქტირება</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -74,10 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <div class="admin-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <div>
-        <div class="admin-h2 mb-1">✏️ Gallery Edit</div>
+        <div class="admin-h2 mb-1">✏️ გალერეის რედაქტირება</div>
         <div class="admin-muted">ID: #<?= (int)$item["id"] ?></div>
       </div>
-      <a class="btn btn-outline-secondary admin-btn-soft" href="gallery-manage.php">Back</a>
+      <a class="btn btn-outline-secondary admin-btn-soft" href="gallery-manage.php">უკან</a>
     </div>
 
     <?php if ($success): ?>
@@ -93,13 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if (!empty($item["image"])): ?>
           <img src="../assets/uploads/gallery/<?= (int)$item["id"] ?>/<?= htmlspecialchars($item["image"]) ?>" style="width:180px;height:110px;object-fit:cover;border-radius:12px;">
         <?php else: ?>
-          <span class="admin-badge admin-badge--muted">No image</span>
+          <span class="admin-badge admin-badge--muted">სურათი არ არის</span>
         <?php endif; ?>
       </div>
       <div class="mb-3">
         <label class="form-label">შეცვალე სურათი</label>
         <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.webp">
-        <div class="admin-help mt-1">jpg, png, webp – max 6MB</div>
+        <div class="admin-help mt-1">jpg, png, webp – მაქს. 6MB</div>
       </div>
       <div class="mb-3">
         <label class="form-label">სათაური</label>
@@ -112,13 +112,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="mb-3">
         <label class="form-label">სტატუსი</label>
         <select name="status" class="form-select">
-          <option value="active" <?= ($item["status"] ?? "active") === "active" ? "selected" : "" ?>>Active</option>
-          <option value="inactive" <?= ($item["status"] ?? "") === "inactive" ? "selected" : "" ?>>Inactive</option>
+          <option value="active" <?= ($item["status"] ?? "active") === "active" ? "selected" : "" ?>>აქტიური</option>
+          <option value="inactive" <?= ($item["status"] ?? "") === "inactive" ? "selected" : "" ?>>არააქტიური</option>
         </select>
       </div>
       <div class="d-flex gap-2">
-        <button class="btn btn-primary admin-btn">Update</button>
-        <a href="gallery-manage.php" class="btn btn-outline-secondary admin-btn-soft">Cancel</a>
+        <button class="btn btn-primary admin-btn">განახლება</button>
+        <a href="gallery-manage.php" class="btn btn-outline-secondary admin-btn-soft">გაუქმება</a>
       </div>
     </form>
   </div>

@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Gallery Add</title>
+  <title>გალერეის დამატება</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -95,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="admin-muted">სურათი + სათაური + აღწერა</div>
       </div>
       <div class="d-flex gap-2">
-        <a class="btn btn-outline-primary admin-btn-soft" href="gallery-manage.php">Manage</a>
-        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">Back</a>
+        <a class="btn btn-outline-primary admin-btn-soft" href="gallery-manage.php">მართვა</a>
+        <a class="btn btn-outline-secondary admin-btn-soft" href="dashboard.php">უკან</a>
       </div>
     </div>
 
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="mb-3">
         <label class="form-label">სურათი *</label>
         <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.webp" required>
-        <div class="admin-help mt-1">jpg, png, webp – max 6MB</div>
+        <div class="admin-help mt-1">jpg, png, webp – მაქს. 6MB</div>
       </div>
       <div class="mb-3">
         <label class="form-label">სათაური (ოფციური)</label>
@@ -124,11 +124,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="mb-3">
         <label class="form-label">სტატუსი</label>
         <select name="status" class="form-select">
-          <option value="active" <?= ($_POST["status"] ?? "active") === "active" ? "selected" : "" ?>>Active</option>
-          <option value="inactive" <?= ($_POST["status"] ?? "") === "inactive" ? "selected" : "" ?>>Inactive</option>
+          <option value="active" <?= ($_POST["status"] ?? "active") === "active" ? "selected" : "" ?>>აქტიური</option>
+          <option value="inactive" <?= ($_POST["status"] ?? "") === "inactive" ? "selected" : "" ?>>არააქტიური</option>
         </select>
       </div>
-      <button class="btn btn-primary admin-btn">Save</button>
+      <button class="btn btn-primary admin-btn">შენახვა</button>
     </form>
   </div>
 </div>
